@@ -4,11 +4,11 @@ export COMPSS_PYTHON_VERSION=3-ML
 module load COMPSs/2.10
 module load singularity/3.5.2
 module use /apps/modules/modulefiles/tools/COMPSs/libraries
-module load permedcoe_scalability  # generic permedcoe package
+module load permedcoe  # generic permedcoe package
 
 # Override the following for using different images, assets or dataset
-export COVID19_BB_IMAGES=${COVID19_BB_IMAGES}  # Currently using the "permedcoe" deployed
-export COVID19_BB_ASSETS=${COVID19_BB_ASSETS}  # Currently using the "permedcoe" deployed
+export PERMEDCOE_IMAGES=${PERMEDCOE_IMAGES}  # Currently using the "permedcoe" deployed
+export PERMEDCOE_ASSETS=${PERMEDCOE_ASSETS}  # Currently using the "permedcoe" deployed
 dataset=${COVID19_PILOT_DATASET}               # Currently using the "permedcoe" deployed
 
 # Set the tool internal parallelism and constraint
@@ -22,7 +22,7 @@ enqueue_compss \
     --graph \
     --tracing \
     --python_interpreter=python3 \
-    covid19_pilot.py \
+    $(pwd)/src/covid19_pilot.py \
         ${dataset}metadata_clean.tsv \
         ${dataset}epithelial_cell_2 \
         $(pwd)/results/ \

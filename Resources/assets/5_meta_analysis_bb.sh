@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-export COVID19_BB_IMAGES=$(pwd)/../images/
-export COVID19_BB_ASSETS=$(pwd)/
+export PERMEDCOE_IMAGES=$(pwd)/../images/
+export PERMEDCOE_ASSETS=$(pwd)/
 
 mkdir $(pwd)/result/meta_analysis/
 
-meta_analysis -d \
+meta_analysis_BB -d \
     -i $(pwd)/../data/metadata_small.tsv \
        $(pwd)/result/ \
        epithelial_cell_2 \
@@ -13,4 +13,4 @@ meta_analysis -d \
        2 \
        T \
     -o $(pwd)/result/meta_analysis/ \
-    --mount_points ${COVID19_BB_ASSETS}/meta_analysis/:${COVID19_BB_ASSETS}/meta_analysis/
+    --mount_points ${PERMEDCOE_ASSETS}/meta_analysis/:${PERMEDCOE_ASSETS}/meta_analysis/

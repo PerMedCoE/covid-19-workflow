@@ -20,7 +20,7 @@ enqueue_compss \
     --tracing \
     --python_interpreter=python3 \
     --epilog="$(pwd)/./clean.sh" \
-    covid19_pilot.py \
+    $(pwd)/src/covid19_pilot.py \
         ${dataset}${tsv_file} \
         ${dataset}epithelial_cell_2 \
         $(pwd)/results_${COMPUTING_UNITS}/ \

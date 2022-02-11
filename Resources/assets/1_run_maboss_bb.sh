@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-export COVID19_BB_IMAGES=$(pwd)/../images/
-export COVID19_BB_ASSETS=$(pwd)/
+export PERMEDCOE_IMAGES=$(pwd)/../images/
+export PERMEDCOE_ASSETS=$(pwd)/
 export COMPUTING_UNITS=1
 
-maboss -d \
+maboss_BB -d \
     -i epithelial_cell_2 $(pwd)/../data ${COMPUTING_UNITS} \
     -o $(pwd)/ko_file.txt \
-    --mount_point ${COVID19_BB_ASSETS}/MaBoSS:${COVID19_BB_ASSETS}/MaBoSS
+    --mount_point ${PERMEDCOE_ASSETS}/MaBoSS:${PERMEDCOE_ASSETS}/MaBoSS

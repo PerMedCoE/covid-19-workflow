@@ -6,23 +6,23 @@ CURRENT_DIR=$(pwd)
 cd ../../BuildingBlocks
 
 cd MaBoSS
-./install.sh
+./uninstall.sh
 cd ..
 
 cd meta_analysis
-./install.sh
+./uninstall.sh
 cd ..
 
 cd personalize_patient
-./install.sh
+./uninstall.sh
 cd ..
 
 cd PhysiBoSS
-./install.sh
+./uninstall.sh
 cd ..
 
 cd single_cell_processing
-./install.sh
+./uninstall.sh
 cd ..
 
 cd ${CURRENT_DIR}

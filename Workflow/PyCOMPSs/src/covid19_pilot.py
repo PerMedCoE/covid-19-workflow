@@ -6,11 +6,11 @@ import csv
 # To set building block debug mode
 from permedcoe import set_debug
 # Import building block tasks
-# from maboss import MaBoSS_analysis
-# from single_cell_processing import single_cell_processing
-# from personalize_patient import personalize_patient
-# from physiboss import physiboss_model
-# from meta_analysis import meta_analysis
+from maboss_BB import MaBoSS_analysis
+from single_cell_processing_BB import single_cell_processing
+from personalize_patient_BB import personalize_patient
+from physiboss_BB import physiboss_model
+from meta_analysis_BB import meta_analysis
 # Import utils
 from utils import parse_input_parameters
 from helpers import get_genefiles
@@ -19,7 +19,6 @@ from helpers import get_genefiles
 from pycompss.api.api import compss_wait_on_directory
 from pycompss.api.api import compss_wait_on_file
 from pycompss.api.api import compss_wait_on
-
 
 
 def main():
@@ -53,7 +52,6 @@ def main():
     # Iterate over the metadata file processing each patient
     physiboss_results = []
     physiboss_subfolder = "physiboss_results"  # do not modify (hardcoded in meta-analysis)
-    """
     with open(args.metadata, "r") as metadata_fd:
         reader = csv.DictReader(metadata_fd, delimiter="\t")
         for line in reader:
@@ -73,7 +71,7 @@ def main():
             if line["file"].startswith("../.."):
                 # Two folder relative - Local
                 relative_p_file = os.path.join(*(line["file"].split(os.path.sep)[2:]))  # remove first two folders "../.."
-                p_file = os.path.join("..", "..", "resources", relative_p_file)
+                p_file = os.path.join("..", "..", "Resources", relative_p_file)
             else:
                 # Absolute path - Supercomputer
                 p_file = line["file"]
@@ -120,9 +118,7 @@ def main():
                                     out_file=out_file,
                                     err_file=err_file,
                                     results_dir=results_dir)
-    """
 
-    """
     # VERSION 1: PROCESS ALL WITHIN THE SAME TASK
 
     # Wait for all physiboss
@@ -143,15 +139,22 @@ def main():
                   reps=args.reps,
                   verbose="T",
                   results=final_result_dir)
-    """
 
+    """
     # VERSION 2: REDUCE PER PATIENT, AND FINALLY ALL OF THEM
+    # WORK IN PROGRESS!!!
 
     # We need to sync all physiboss simulations because physiboss does not
     # provide the final.xml and final_cells_physicell.mat as file out.
     # It only provides them as contents within the folder.
-    #for physiboss_result in physiboss_results:
-    #    compss_wait_on_directory(physiboss_result)
+    for physiboss_result in physiboss_results:
+       compss_wait_on_directory(physiboss_result)
+
+    from parallel_meta_analysis import extract_simulation_results
+    from parallel_meta_analysis import merge_reduce
+    from parallel_meta_analysis import reduce_simulation_results
+    from parallel_meta_analysis import reduce_patient_results
+    from parallel_meta_analysis import reduce_simulation
 
     print("OUTPUT DIR:")
     print(args.outdir)
@@ -184,66 +187,8 @@ def main():
     final_result = compss_wait_on(final_result)
     import pprint
     pprint.pprint(final_result)
-
-
-from pycompss.api.task import task
-from pycompss.api.parameter import FILE_IN
-import xml
-import scipy.io
-
-@task(returns=2, final_xml=FILE_IN, final_cells_physicell_mat=FILE_IN)
-def extract_simulation_results(final_xml, final_cells_physicell_mat):
-    final_content = xml.dom.minidom.parse(final_xml)
-    data_content = scipy.io.loadmat(final_cells_physicell_mat)
-    # HERE WE CAN CONVERT THE CONTENTS TO A DS-ARRAY TO BE USED LATER WITH
-    # A DISLIB ALGORITHM
-    return final_content, data_content
-
-
-def merge_reduce(function, data, chunk=48):
-    """ Apply function cumulatively to the items of data,
-        from left to right in binary tree structure, so as to
-        reduce the data to a single value.
-    :param function: function to apply to reduce data
-    :param data: List of items to be reduced
-    :param chunk: Number of elements per reduction
-    :return: result of reduce the data to a single value
     """
-    while(len(data)) > 1:
-        dataToReduce = data[:chunk]
-        data = data[chunk:]
-        data.append(function(*dataToReduce))
-    return data[0]
 
-@task(returns=dict)
-def reduce_simulation_results(*data):
-    reduce_value = data[0]
-    for i in range(1, len(data)):
-        a, b = reduce_simulation(reduce_value, data[i])
-        reduce_value.append(a)
-        reduce_value.append(b)
-    return reduce_value
-
-
-@task(returns=dict)
-def reduce_patient_results(*data):
-    reduce_value = data[0]
-    for i in range(1, len(data)):
-        a, b = reduce_simulation(reduce_value, data[i])
-        reduce_value.append(a)
-        reduce_value.append(b)
-    return reduce_value
-
-
-def reduce_simulation(a, b):
-    """
-    Reduce method to accumulate two simulations
-    :param a: Simulation A
-    :param b: Simulation B
-    :return: (Simulation A, Simulation B)
-    """
-    # This method should extract the necessary parameters
-    return a, b
 
 if __name__ == "__main__":
     main()
