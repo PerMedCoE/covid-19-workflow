@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export COMPSS_PYTHON_VERSION=3-ML
+export COMPSS_PYTHON_VERSION=3
 module load COMPSs/2.10
 module load singularity/3.5.2
 module use /apps/modules/modulefiles/tools/COMPSs/libraries
@@ -9,7 +9,7 @@ module load permedcoe  # generic permedcoe package
 # Override the following for using different images, assets or dataset
 export PERMEDCOE_IMAGES=${PERMEDCOE_IMAGES}  # Currently using the "permedcoe" deployed
 export PERMEDCOE_ASSETS=${PERMEDCOE_ASSETS}  # Currently using the "permedcoe" deployed
-dataset=${COVID19_PILOT_DATASET}               # Currently using the "permedcoe" deployed
+dataset=$(pwd)/../../Resources/data/
 
 # Set the tool internal parallelism and constraint
 export COMPUTING_UNITS=1

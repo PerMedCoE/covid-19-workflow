@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo "Installing covid-19-workflow required Building Blocks... Please wait..."
 
 CURRENT_DIR=$(pwd)
