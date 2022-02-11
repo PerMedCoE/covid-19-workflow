@@ -11,23 +11,24 @@ export PERMEDCOE_IMAGES=${PERMEDCOE_IMAGES}  # Currently using the "permedcoe" d
 export PERMEDCOE_ASSETS=${PERMEDCOE_ASSETS}  # Currently using the "permedcoe" deployed
 dataset=${COVID19_PILOT_DATASET}               # Currently using the "permedcoe" deployed
 
+
 # Set the tool internal parallelism and constraint
 export COMPUTING_UNITS=1
 
 enqueue_compss \
     --num_nodes=2 \
-    --exec_time=45 \
+    --exec_time=15 \
     --worker_working_dir=$(pwd) \
     --log_level=off \
     --graph \
     --tracing \
     --python_interpreter=python3 \
-    $(pwd)/src/covid19_pilot.py \
-        ${dataset}metadata_clean.tsv \
+    $(pwd)/../src/covid19_pilot.py \
+        ${dataset}metadata_one.tsv \
         ${dataset}epithelial_cell_2 \
-        $(pwd)/results/ \
+        $(pwd)/results_${COMPUTING_UNITS}/ \
         $(pwd)/ko_file.txt \
-        2 \
+        1 \
         epithelial_cell_2 \
         ${dataset}
 

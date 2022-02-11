@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-export PERMEDCOE_IMAGES=$(pwd)/../../Resources/images/
-export PERMEDCOE_ASSETS=$(pwd)/../../Resources/assets/
+export PERMEDCOE_IMAGES=$(pwd)/../../../BuildingBlocks/Resources/images/
+export PERMEDCOE_ASSETS=$(pwd)/../../../BuildingBlocks/Resources/assets/
 
 dataset=$(pwd)/../../Resources/data
 

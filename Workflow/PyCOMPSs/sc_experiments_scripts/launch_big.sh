@@ -16,26 +16,27 @@ export COMPUTING_UNITS=1
 
 enqueue_compss \
     --num_nodes=2 \
-    --exec_time=45 \
+    --exec_time=30 \
     --worker_working_dir=$(pwd) \
     --log_level=off \
     --graph \
     --tracing \
     --python_interpreter=python3 \
-    $(pwd)/src/covid19_pilot.py \
+    $(pwd)/../src/covid19_pilot.py \
         ${dataset}metadata_clean.tsv \
         ${dataset}epithelial_cell_2 \
         $(pwd)/results/ \
         $(pwd)/ko_file.txt \
-        2 \
+        4 \
         epithelial_cell_2 \
         ${dataset}
+
 
 ######################################################
 # APPLICATION EXECUTION EXAMPLE
 # Call:
-#       ./launch.sh
+#       ./launch_big.sh
 #
 # Example:
-#       ./launch.sh
+#       ./launch_big.sh
 ######################################################
