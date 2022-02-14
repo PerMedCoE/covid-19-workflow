@@ -1,3 +1,3 @@
 id	group	file
-C141	C	/home/javier/github/projects/PerMedCoE/PilotWorkflow/resources/data/GSE145926_covid19/small/GSM4339769_C141_filtered_feature_bc_matrix.h5
-C142	C	/home/javier/github/projects/PerMedCoE/PilotWorkflow/resources/data/GSE145926_covid19/small/GSM4339770_C142_filtered_feature_bc_matrix.h5
+C141	C	/home/javier/github/projects/PerMedCoE/covid-19-workflow/Resources/data/GSE145926_covid19/small/GSM4339769_C141_filtered_feature_bc_matrix.h5
+C142	C	/home/javier/github/projects/PerMedCoE/covid-19-workflow/Resources/data/GSE145926_covid19/small/GSM4339770_C142_filtered_feature_bc_matrix.h5
