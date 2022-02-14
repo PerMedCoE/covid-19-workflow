@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+
+export COMPSS_PYTHON_VERSION=3-ML
+module load COMPSs/2.10
+module load singularity/3.5.2
+module use /apps/modules/modulefiles/tools/COMPSs/libraries
+module load permedcoe  # generic permedcoe package
+
+# Override the following for using different images, assets or dataset
+export PERMEDCOE_IMAGES=${PERMEDCOE_IMAGES}  # Currently using the "permedcoe" deployed
+export PERMEDCOE_ASSETS=${PERMEDCOE_ASSETS}  # Currently using the "permedcoe" deployed
+
+# Set the tool internal parallelism and constraint
+export COMPUTING_UNITS=4  # Always 4 since it has been found to be good.
+
+
+# 11 nodes (1 master + 10 worker) with 100 patients
+id=$(./launch_milestone_job.sh None 11 60 metadata_10x.tsv | grep "Submitted batch job" | cut -d " " -f 4)
+echo $id
+
+# 9 nodes (1 master + 8 worker) with 80 patients
+id=$(./launch_milestone_job.sh ${id} 9 90 metadata_10x.tsv | grep "Submitted batch job" | cut -d " " -f 4)
+echo $id
+
+# 7 nodes (1 master + 6 worker) with 60 patients
+id=$(./launch_milestone_job.sh ${id} 7 120 metadata_10x.tsv | grep "Submitted batch job" | cut -d " " -f 4)
+echo $id
+
+# 5 nodes (1 master + 4 worker) with 40 patients
+id=$(./launch_milestone_job.sh ${id} 5 120 metadata_10x.tsv | grep "Submitted batch job" | cut -d " " -f 4)
+echo $id
+
+# 3 nodes (1 master + 2 worker) with 20 patients
+id=$(./launch_milestone_job.sh ${id} 3 120 metadata_10x.tsv | grep "Submitted batch job" | cut -d " " -f 4)
+echo $id
+
+# 2 nodes (1 master + 1 worker) with 10 patients
+id=$(./launch_milestone_job.sh ${id} 2 120 metadata_10x.tsv | grep "Submitted batch job" | cut -d " " -f 4)
+echo $id

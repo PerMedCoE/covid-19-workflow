@@ -1,0 +1,126 @@
+# PWD is mandatory due to the wrapped applications
+# resolving paths relative to their installation directory..
+# THIS SHOULD NOT BE THE CASE!
+
+
+
+
+from os import listdir
+n_reps=2
+reps=[i+1 for i in range(0,n_reps)]
+
+
+data_dir=os.environ["PWD"]+"/../../resources/data"
+result_dir=os.environ["PWD"]+"/result"
+
+metadata_file=data_dir+"/metadata_small.tsv"
+
+
+# For better parallelism, we split the metadata file
+# This is the folder where the split tsv:s are placed
+metadata_dir=os.environ["PWD"]+"/"
+
+
+single_cell_input=os.listdir(data_dir+"/small")
+single_cell_input=[data_dir+"/small/"+i for i in single_cell_input]
+samples=[];
+with open(metadata_file) as f:
+   next(f)
+   for line in f:
+        samples.append(line.split()[0])
+ipm={}
+for sample in samples:
+    ipm[sample]=list(filter(lambda x: sample in x, single_cell_input))[0]
+print(ipm)
+
+
+
+rule meta_analysis:
+    input:
+        metadata_file,
+        os.environ["PWD"]+"/ko_file.txt",
+        expand(os.environ["PWD"]+"/{sample}.touch",sample=samples),
+    output:
+        directory(result_dir + "/meta_analysis/")
+    params:
+        nr=n_reps,
+        rd=result_dir
+    shell:
+        "meta_analysis -d -i {input[0]} {params.rd} epithelial_cell_2 {input[1]} {params.nr} T -o {output}"
+
+rule physiboss:
+    input: 
+        multiext(result_dir+"/{sample}/personalize_patient/models/{prefix}",".bnd",".cfg")
+    output:
+        multiext(result_dir+"/{sample}/physiboss_results/output_{prefix}_{rep}",".out",".err"),
+        directory(result_dir+"/{sample}/physiboss_results/{prefix}_physiboss_run_{rep}")
+    shell:
+        "physiboss -d -i {wildcards.sample} {wildcards.rep} {wildcards.prefix} {input} -o {output} "
+
+checkpoint personalize:
+    input:
+        multiext(result_dir+"/{sample}/single_cell_processing/results/","norm_data.tsv","cells_metadata.tsv" ),
+        os.environ["PWD"]+"/ko_file.txt"
+    output:
+        directory(result_dir+"/{sample}/personalize_patient/models"),
+        result_dir+"/{sample,[A-Za-z0-9]+}/personalize_patient/personalized_by_cell_type.tsv"
+    params:
+        # We can not use the input/output as this is not an actual file
+        # The interface to the BB is clumsy at the moment. 
+        epi=data_dir+"/epithelial_cell_2",
+    shell:
+        "personalize_patient -d -i {input[0]} {input[1]} {params.epi} Epithelial_cells {input[2]} -o {output}"
+
+
+def get_sample_f(wildcards):
+    return ipm[wildcards.sample]
+
+rule single_cell:
+    input:
+        get_sample_f
+    output:
+        multiext(result_dir + "/{sample}/single_cell_processing/results/","norm_data.tsv","raw_data.tsv" ,"scaled_data.tsv","cells_metadata.tsv"),
+        directory(result_dir + "/{sample}/single_cell_processing/images/")
+    shell:
+        "single_cell_processing -d -i {wildcards.sample} C {input} -o {output}" 
+
+
+rule split_metadata:
+    input:
+        metadata_file
+    output:
+        expand(metadata_dir+"{sample}.tsv" ,sample=samples)
+    shell:
+        "./split.sh {input}"
+ 
+
+rule maboss:
+    input:
+        data_dir
+    output:
+        os.environ["PWD"]+"/ko_file.txt"
+    shell:
+        "maboss -d -i epithelial_cell_2 {input} -o {output}"
+
+def get_personalize(wildcards):
+    checkpoints.personalize.get(sample=wildcards.sample)
+    prefixs=glob_wildcards("{}/{}/personalize_patient/models/{{prefix}}.cfg".format(result_dir,wildcards.sample)).prefix
+    return expand(result_dir +"/"+ wildcards.sample+ "/physiboss_results/output_{prefix}_{rep}.out",prefix=prefixs,rep=reps)
+
+# Meta rule triggered
+# once per sample 
+# generates the request for the final files
+rule physiboss_aggregate:
+    input: get_personalize
+    output: os.environ["PWD"] + "/{sample}.touch"
+    shell:
+        "touch {output}"
+
+
+
+# Top rule which is re-evaluated after 
+# single_cell has run and we know the number of samples
+#rule sample_aggregate:
+#    input: expand(os.environ["PWD"]+"/{sample}.touch",sample=samples)
+
+
