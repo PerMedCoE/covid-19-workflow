@@ -60,7 +60,7 @@ This section explains the requirements and usage for the COVID19 Workflow in a l
 #### Requirements
 
 - [`permedcoe`](https://github.com/PerMedCoE/permedcoe) package
-- [PyCOMPSs](https://pycompss.readthedocs.io/en/stable/Sections/00_Quickstart.html)
+- [PyCOMPSs](https://pycompss.readthedocs.io/en/stable/Sections/00_Quickstart.html) / [Snakemake](https://snakemake.readthedocs.io/en/stable/)
 - [Singularity](https://sylabs.io/guides/3.0/user-guide/installation.html)
 
 #### Usage steps
@@ -94,8 +94,11 @@ This section explains the requirements and usage for the COVID19 Workflow in a l
 4. Install the `BuildingBlocks` package
 
    ```bash
-   cd BuildingBlocks && ./install.sh && cd ..
+   cd covid-19-workflow
+   cd BuildingBlocks && ./install_BBs.sh && cd ..
    ```
+
+**If using PyCOMPSs**
 
 5. Go to `Workflow/PyCOMPSs` folder
 
@@ -105,10 +108,20 @@ This section explains the requirements and usage for the COVID19 Workflow in a l
 
 6. Execute `./run.sh`
 
+**If using Snakemake**
+
+5. Go to `Workflow/SnakeMake` folder
+
+   ```bash
+   cd Workflows/SnakeMake
+   ```
+
+6. Execute `./run.sh`
+
 The execution is prepared to use the singularity images that **MUST** be placed into `BuildingBlocks/Resources/images` folder, and the assets **MUST** be located into `BuildingBlocks/Resources/assets`. If they are located in any other folder, please update the `run.sh` script setting the `PERMEDCOE_IMAGES` and `PERMEDCOE_ASSETS` to
 the images and assets folders accordingly.
 
-> **TIP**: If you want to run the workflow with a different dataset, please update the `run.sh` script setting the `dataset` variable to the new dataset folder and their file names.
+> **TIP**: If you want to run the workflow with a different dataset, please update the `run.sh` script setting the `dataset` variable to the new dataset folder and their file names. 
 
 ### MareNostrum 4
 
@@ -157,6 +170,30 @@ This command will launch a job into the job queuing system (SLURM) requesting 2 
 > :warning: **TIP**: If you want to run the workflow with a different dataset, please edit the `launch.sh` script and define the appropriate dataset path.
 
 After the execution, a `results` folder will be available with with COVID19 Workflow results.
+
+### Mahti or Puhti
+
+This section explains how to run the COVID19 workflow on CSC supercomputers using SnakeMake.
+
+#### Requirements
+
+- Install snakemake (or check if there is a version installed using `module spider snakemake`)
+- Install workflow, using the same steps as for the local machine. With the exception that containers have to be built elsewhere. 
+
+#### Steps
+
+
+1. Go to `Workflow/SnakeMake` folder
+
+   ```bash
+   cd Workflow/SnakeMake
+   ```
+   
+2. Edit `launch.sh` with the correct partition, account, and resource specifications.  
+
+3. Execute `./launch.sh`
+
+> :warning: Snakemake provides a `--cluster` flag, but this functionality should be avoided as it's really not suited for HPC systems.
 
 ## License
 
