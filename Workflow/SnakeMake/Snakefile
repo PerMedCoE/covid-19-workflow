@@ -10,7 +10,7 @@ n_reps=2
 reps=[i+1 for i in range(0,n_reps)]
 
 
-data_dir=os.environ["PWD"]+"/../../resources/data"
+data_dir=os.environ["_DATA_DIR"]
 result_dir=os.environ["PWD"]+"/result"
 
 metadata_file=data_dir+"/metadata_small.tsv"
@@ -46,7 +46,7 @@ rule meta_analysis:
         nr=n_reps,
         rd=result_dir
     shell:
-        "meta_analysis -d -i {input[0]} {params.rd} epithelial_cell_2 {input[1]} {params.nr} T -o {output}"
+        "meta_analysis_BB -d -i {input[0]} {params.rd} epithelial_cell_2 {input[1]} {params.nr} T -o {output}"
 
 rule physiboss:
     input: 
@@ -55,7 +55,7 @@ rule physiboss:
         multiext(result_dir+"/{sample}/physiboss_results/output_{prefix}_{rep}",".out",".err"),
         directory(result_dir+"/{sample}/physiboss_results/{prefix}_physiboss_run_{rep}")
     shell:
-        "physiboss -d -i {wildcards.sample} {wildcards.rep} {wildcards.prefix} {input} -o {output} "
+        "physiboss_BB -d -i {wildcards.sample} {wildcards.rep} {wildcards.prefix} {input} 1 -o {output} "
 
 checkpoint personalize:
     input:
@@ -69,7 +69,7 @@ checkpoint personalize:
         # The interface to the BB is clumsy at the moment. 
         epi=data_dir+"/epithelial_cell_2",
     shell:
-        "personalize_patient -d -i {input[0]} {input[1]} {params.epi} Epithelial_cells {input[2]} -o {output}"
+        "personalize_patient_BB -c config.yml -d -i {input[0]} {input[1]} {params.epi} Epithelial_cells {input[2]} -o {output}"
 
 
 def get_sample_f(wildcards):
@@ -82,7 +82,7 @@ rule single_cell:
         multiext(result_dir + "/{sample}/single_cell_processing/results/","norm_data.tsv","raw_data.tsv" ,"scaled_data.tsv","cells_metadata.tsv"),
         directory(result_dir + "/{sample}/single_cell_processing/images/")
     shell:
-        "single_cell_processing -d -i {wildcards.sample} C {input} -o {output}" 
+        "single_cell_processing_BB -d -i {wildcards.sample}  C {input} 1 -o {output}" 
 
 
 rule split_metadata:
@@ -100,7 +100,7 @@ rule maboss:
     output:
         os.environ["PWD"]+"/ko_file.txt"
     shell:
-        "maboss -d -i epithelial_cell_2 {input} -o {output}"
+        "maboss_BB -d -i epithelial_cell_2 {input} 1 -o {output} -c config.yml"
 
 def get_personalize(wildcards):
     checkpoints.personalize.get(sample=wildcards.sample)
