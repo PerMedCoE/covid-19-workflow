@@ -19,7 +19,6 @@ COVID-19 Multiscale Modelling of the Virus and Patients’ Tissue
     - [MareNostrum 4](#marenostrum-4)
       - [Requirements in MN4](#requirements-in-mn4)
       - [Usage steps in MN4](#usage-steps-in-mn4)
-  - [License](#license)
   - [Contact](#contact)
 
 ## Description
@@ -41,15 +40,13 @@ Currently contains the implementation using PyCOMPSs and Snakemake (in progress)
 
 ### Resources
 
-The ``Resources`` folder contains the building blocks assets and images, and
-a small dataset.
+The ``Resources`` folder contains dataset files.
 
 ### Tests
 
 The ``Tests`` folder contains the scripts that run each Building Block
-used in the workflow for a small dataset.
-They can be executed individually *without PyCOMPSs installed* for testing
-purposes.
+used in the workflow for the given small dataset.
+They can be executed individually for testing purposes.
 
 ## Instructions
 
@@ -105,8 +102,8 @@ This section explains the requirements and usage for the COVID19 Workflow in a l
 
 6. Execute `./run.sh`
 
-The execution is prepared to use the singularity images that **MUST** be placed into `BuildingBlocks/Resources/images` folder, and the assets **MUST** be located into `BuildingBlocks/Resources/assets`. If they are located in any other folder, please update the `run.sh` script setting the `PERMEDCOE_IMAGES` and `PERMEDCOE_ASSETS` to
-the images and assets folders accordingly.
+The execution is prepared to use the singularity images that **MUST** be placed into `BuildingBlocks/Resources/images` folder.
+If they are located in any other folder, please update the `run.sh` script setting the `PERMEDCOE_IMAGES` to the images folder accordingly.
 
 > **TIP**: If you want to run the workflow with a different dataset, please update the `run.sh` script setting the `dataset` variable to the new dataset folder and their file names.
 
@@ -134,7 +131,7 @@ All Building Blocks are already installed in MN4, and the COVID19 Workflow avail
 
    > **TIP**: Include the loading into your `${HOME}/.bashrc` file to load it automatically on the session start.
 
-   This commands will load COMPSs and the permedcoe package which provides all necessary dependencies, as well as the path to the singularity container images (`PERMEDCOE_IMAGES` environment variable), assets (`PERMEDCOE_ASSETS` environment variable) and testing dataset (`COVID19WORKFLOW_DATASET` environment variable).
+   This commands will load COMPSs and the permedcoe package which provides all necessary dependencies, as well as the path to the singularity container images (`PERMEDCOE_IMAGES` environment variable) and testing dataset (`COVID19WORKFLOW_DATASET` environment variable).
 
 2. Get a copy of the pilot workflow into your desired folder
 
@@ -152,15 +149,11 @@ All Building Blocks are already installed in MN4, and the COVID19 Workflow avail
 
 4. Execute `./launch.sh`
 
-This command will launch a job into the job queuing system (SLURM) requesting 2 nodes (one node acting half master and half worker, and other full worker node) for 20 minutes, and is prepared to use the singularity images that are already deployed in MN4 (located into the `PERMEDCOE_IMAGES` environment variable). It uses the assets located into the `PERMEDCOE_ASSETS` environment variable and dataset located into `../../Resources/data` folder.
+This command will launch a job into the job queuing system (SLURM) requesting 2 nodes (one node acting half master and half worker, and other full worker node) for 20 minutes, and is prepared to use the singularity images that are already deployed in MN4 (located into the `PERMEDCOE_IMAGES` environment variable). It uses the dataset located into `../../Resources/data` folder.
 
 > :warning: **TIP**: If you want to run the workflow with a different dataset, please edit the `launch.sh` script and define the appropriate dataset path.
 
 After the execution, a `results` folder will be available with with COVID19 Workflow results.
-
-## License
-
-[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Contact
 
