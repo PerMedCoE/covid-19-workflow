@@ -6,10 +6,6 @@ module load singularity/3.5.2
 module use /apps/modules/modulefiles/tools/COMPSs/libraries
 module load permedcoe  # generic permedcoe package
 
-# Override the following for using different images, assets or dataset
-export PERMEDCOE_IMAGES=${PERMEDCOE_IMAGES}  # Currently using the "permedcoe" deployed
-export PERMEDCOE_ASSETS=${PERMEDCOE_ASSETS}  # Currently using the "permedcoe" deployed
-
 # Set the tool internal parallelism and constraint
 export COMPUTING_UNITS=4  # Always 4 since it has been found to be good.
 

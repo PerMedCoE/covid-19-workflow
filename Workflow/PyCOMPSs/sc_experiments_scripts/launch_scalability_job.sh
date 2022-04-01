@@ -3,7 +3,9 @@
 previous_id=$1
 shift 1
 
-dataset=${COVID19_PILOT_DATASET}               # Currently using the "permedcoe" deployed
+# Override the following for using different images or dataset
+export PERMEDCOE_IMAGES=${PERMEDCOE_IMAGES}  # Currently using the "permedcoe" deployed
+dataset=${COVID19_PILOT_DATASET}             # Currently using the "permedcoe" deployed
 
 
 enqueue_compss \
