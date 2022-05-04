@@ -1,10 +1,8 @@
-# COVID-19 Workflow
-
-COVID-19 Multiscale Modelling of the Virus and Patients’ Tissue
+# COVID-19 Multiscale Modelling of the Virus and Patients’ Tissue Workflow
 
 ## Table of Contents
 
-- [COVID-19 Workflow](#covid-19-workflow)
+- [COVID-19 Multiscale Modelling of the Virus and Patients’ Tissue Workflow](#covid-19-multiscale-modelling-of-the-virus-and-patients-tissue-workflow)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
   - [Contents](#contents)
@@ -19,11 +17,31 @@ COVID-19 Multiscale Modelling of the Virus and Patients’ Tissue
     - [MareNostrum 4](#marenostrum-4)
       - [Requirements in MN4](#requirements-in-mn4)
       - [Usage steps in MN4](#usage-steps-in-mn4)
+  - [License](#license)
   - [Contact](#contact)
 
 ## Description
 
-TO BE COMPLETED
+Uses multiscale simulations to predict patient-specific SARS‑CoV‑2 severity subtypes
+(moderate, severe or control), using single-cell RNA-Seq data, MaBoSS and PhysiBoSS.
+Boolean models are used to determine the behaviour of individual agents as a function
+of extracellular conditions and the concentration of different  substrates, including
+the number of virions. Predictions of severity subtypes are based on a meta-analysis of
+personalised model outputs simulating cellular apoptosis regulation in epithelial cells
+infected by SARS‑CoV‑2.
+
+The workflow uses the following building blocks, described in order of execution:
+
+1. High-throughput mutant analysis
+2. Single-cell processing
+3. Personalise patient
+4. PhysiBoSS
+5. Analysis of all simulations
+
+For details on individual workflow steps, see the user documentation for each building block.
+
+[`GitHub repository`](<https://github.com/PerMedCoE/covid-19-workflow>)
+
 
 ## Contents
 
@@ -154,6 +172,10 @@ This command will launch a job into the job queuing system (SLURM) requesting 2 
 > :warning: **TIP**: If you want to run the workflow with a different dataset, please edit the `launch.sh` script and define the appropriate dataset path.
 
 After the execution, a `results` folder will be available with with COVID19 Workflow results.
+
+## License
+
+[Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Contact
 
