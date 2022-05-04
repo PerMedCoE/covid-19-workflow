@@ -6,10 +6,9 @@ module load singularity/3.5.2
 module use /apps/modules/modulefiles/tools/COMPSs/libraries
 module load permedcoe  # generic permedcoe package
 
-# Override the following for using different images, assets or dataset
+# Override the following for using different images or dataset
 export PERMEDCOE_IMAGES=${PERMEDCOE_IMAGES}  # Currently using the "permedcoe" deployed
-export PERMEDCOE_ASSETS=${PERMEDCOE_ASSETS}  # Currently using the "permedcoe" deployed
-dataset=${COVID19_PILOT_DATASET}               # Currently using the "permedcoe" deployed
+dataset=${COVID19_PILOT_DATASET}             # Currently using the "permedcoe" deployed
 
 
 # Set the tool internal parallelism and constraint
@@ -30,7 +29,8 @@ enqueue_compss \
         $(pwd)/ko_file.txt \
         1 \
         epithelial_cell_2 \
-        ${dataset}
+        ${dataset} \
+        5840
 
 ######################################################
 # APPLICATION EXECUTION EXAMPLE

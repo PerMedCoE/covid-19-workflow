@@ -1,26 +1,10 @@
-# COVID-19 Pilot Workflow Assets
+# COVID-19 Pilot Workflow Tests
 
-This folder contains the assets for the COVID-19 Building Blocks.
-
-## Assets
-
-There are five folders, one for each building block required.
-
-```bash
-.
-├── MaBoSS
-├── personalize_patient
-├── PhysiBoSS
-├── single_cell
-└── meta_analysis
-```
-
-Each folder contains the code that is executed within the given singularity
-container.
+This folder contains tests for the COVID-19 Building Blocks.
 
 ## Scripts
 
-In addition, there is a set o scripts to ease the Building Blocks testing:
+There is a set of scripts to ease the Building Blocks testing:
 
 ```bash
 .
@@ -28,13 +12,13 @@ In addition, there is a set o scripts to ease the Building Blocks testing:
 ├── 2_run_single_cell_bb.sh
 ├── 3_run_personalize_patient_bb.sh
 ├── 4_run_physiboss_bb.sh
-└── 5_meta_analysis.sh
+└── 5_run_meta_analysis_BB.sh
 ```
 
 These scripts can be executed one after the other.
 
-**WARNING:** Please, update the ``PERMEDCOE_IMAGES`` and ``PERMEDCOE_ASSETS``
-environment variables exported within each script to the appropriate
+**WARNING:** Please, update the ``PERMEDCOE_IMAGES`` environment 
+variables exported within each script to the appropriate
 singularity container folder and assets folder accordingly.
 
 Finally, there is a ``clean.sh`` script aimed at cleaning the results of the

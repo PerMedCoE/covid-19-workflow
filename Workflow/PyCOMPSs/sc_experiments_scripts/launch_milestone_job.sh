@@ -6,7 +6,9 @@ exec_time=$3
 tsv_file=$4   # e.g. metadata_clean.tsv
 shift 4
 
-dataset=${COVID19_PILOT_DATASET}               # Currently using the "permedcoe" deployed
+# Override the following for using different images or dataset
+export PERMEDCOE_IMAGES=${PERMEDCOE_IMAGES}  # Currently using the "permedcoe" deployed
+dataset=${COVID19_PILOT_DATASET}             # Currently using the "permedcoe" deployed
 
 
 enqueue_compss \
@@ -27,4 +29,5 @@ enqueue_compss \
         $(pwd)/ko_file.txt \
         4 \
         epithelial_cell_2 \
-        ${dataset}
+        ${dataset} \
+        5840

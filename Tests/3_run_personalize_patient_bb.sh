@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
 
-export PERMEDCOE_IMAGES=$(pwd)/../../BuildingBlocks/Resources/images/
-export PERMEDCOE_ASSETS=$(pwd)/../../BuildingBlocks/Resources/assets/
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+export PERMEDCOE_IMAGES=${SCRIPT_DIR}/../../BuildingBlocks/Resources/images/
+export COMPUTING_UNITS=1
+
+# Self contained assets in package
+PERSONALIZE_PATIENT_ASSETS=$(python3 -c "import personalize_patient_BB; import os; print(os.path.dirname(personalize_patient_BB.__file__))")
+
+source ${SCRIPT_DIR}/aux.sh
+disable_pycompss
 
 # 1st patient
 
@@ -14,7 +22,7 @@ personalize_patient_BB -d \
        $(pwd)/ko_file.txt \
     -o $(pwd)/result/C141/personalize_patient/models \
        $(pwd)/result/C141/personalize_patient/personalized_by_cell_type.tsv \
-    --mount_points ${PERMEDCOE_ASSETS}/personalize_patient/:${PERMEDCOE_ASSETS}/personalize_patient/,$(pwd)/../Resources/data/:$(pwd)/../Resources/data/
+    --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/,$(pwd)/../Resources/data/:$(pwd)/../Resources/data/
 
 # 2nd patient
 
@@ -27,4 +35,6 @@ personalize_patient_BB -d \
        $(pwd)/ko_file.txt \
     -o $(pwd)/result/C142/personalize_patient/models \
        $(pwd)/result/C142/personalize_patient/personalized_by_cell_type.tsv \
-    --mount_points ${PERMEDCOE_ASSETS}/personalize_patient/:${PERMEDCOE_ASSETS}/personalize_patient/,$(pwd)/../Resources/data/:$(pwd)/../Resources/data/
+    --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/,$(pwd)/../Resources/data/:$(pwd)/../Resources/data/
+
+enable_pycompss
