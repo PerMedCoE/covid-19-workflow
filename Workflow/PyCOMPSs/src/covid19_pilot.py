@@ -117,7 +117,8 @@ def main():
                                     model_dir=model_output_dir,
                                     out_file=out_file,
                                     err_file=err_file,
-                                    results_dir=results_dir)
+                                    results_dir=results_dir,
+                                    max_time=args.max_time)
 
     # VERSION 1: PROCESS ALL WITHIN THE SAME TASK
 

@@ -25,6 +25,8 @@ def create_parser():
     # New
     parser.add_argument("data_folder", type=str,
                         help="Data folder")
+    parser.add_argument("max_time", type=int,
+                        help="Maximum simulation time")
     return parser
 
 
@@ -45,6 +47,7 @@ def parse_input_parameters(show=True):
         print("\t- replicates: %s" % str(args.reps))
         print("\t- model: %s" % args.model)
         print("\t- data folder: %s" % args.data_folder)
+        print("\t- max time: %d" % args.max_time)
         print("\n")
     return args
 

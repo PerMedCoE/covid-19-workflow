@@ -29,7 +29,8 @@ enqueue_compss \
         $(pwd)/ko_file.txt \
         1 \
         epithelial_cell_2 \
-        ${dataset}
+        ${dataset} \
+        5840
 
 ######################################################
 # APPLICATION EXECUTION EXAMPLE
