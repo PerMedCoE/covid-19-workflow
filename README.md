@@ -17,6 +17,9 @@
     - [MareNostrum 4](#marenostrum-4)
       - [Requirements in MN4](#requirements-in-mn4)
       - [Usage steps in MN4](#usage-steps-in-mn4)
+    - [Mahti or Puhti](#mahti-or-puhti)
+      - [Requirements](#requirements)
+      - [Steps](#steps) 
   - [License](#license)
   - [Contact](#contact)
 
