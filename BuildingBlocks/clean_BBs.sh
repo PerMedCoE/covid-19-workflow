@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Installing covid-19-workflow required Building Blocks... Please wait..."
+echo "Cleaning covid-19-workflow required Building Blocks... Please wait..."
 
 CURRENT_DIR=$(pwd)
 # SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"

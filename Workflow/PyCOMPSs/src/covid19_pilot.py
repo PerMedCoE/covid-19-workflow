@@ -6,10 +6,10 @@ import csv
 # To set building block debug mode
 from permedcoe import set_debug
 # Import building block tasks
-from maboss_BB import MaBoSS_analysis
+from MaBoSS_BB import MaBoSS_analysis
 from single_cell_processing_BB import single_cell_processing
 from personalize_patient_BB import personalize_patient
-from physiboss_BB import physiboss_model
+from PhysiBoSS_BB import physiboss_model
 from meta_analysis_BB import meta_analysis
 # Import utils
 from utils import parse_input_parameters
@@ -117,7 +117,8 @@ def main():
                                     model_dir=model_output_dir,
                                     out_file=out_file,
                                     err_file=err_file,
-                                    results_dir=results_dir)
+                                    results_dir=results_dir,
+                                    max_time=args.max_time)
 
     # VERSION 1: PROCESS ALL WITHIN THE SAME TASK
 

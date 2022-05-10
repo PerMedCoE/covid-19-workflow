@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 export PERMEDCOE_IMAGES=$(pwd)/../../../BuildingBlocks/Resources/images/
-export PERMEDCOE_ASSETS=$(pwd)/../../../BuildingBlocks/Resources/assets/
 
 dataset=$(pwd)/../../Resources/data
 
@@ -15,4 +14,5 @@ runcompss --log_level=debug --graph --python_interpreter=python3 $(pwd)/src/covi
     $(pwd)/ko_file.txt \
     2 \
     epithelial_cell_2 \
-    ${dataset}
+    ${dataset} \
+    100
