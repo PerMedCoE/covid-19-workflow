@@ -1,5 +1,5 @@
 
-
+nextflow.enable.dsl=1
 
 meta_files=Channel.fromPath("${_DATA_DIR}/small/*")
 meta_input=meta_files.map { x -> [x.baseName.split('_')[1],x] }
@@ -43,14 +43,31 @@ process personalize_patient {
 } 
 
 process physiboss_model {
+    cpus=10
     input:
       tuple val(p_id) , path(cfg_file) , path(bnd_file) from models.transpose()
     each rep from 1..repetitions
     output: 
-      tuple val("$p_id"),val("$cfg_file.baseName"),val("$rep"),path('result') into physiboss_result 
+      path("${p_id}_${cfg_file.baseName}_physiboss_run_${rep}") into physiboss_results 
     """
-    PhysiBoSS_BB -d -i $p_id $rep $cfg_file.baseName $bnd_file $cfg_file 1 8640 -o physiboss.out physiboss.err result 
+    PhysiBoSS_BB -d -i $p_id $rep $cfg_file.baseName $bnd_file $cfg_file ${task.cpus} 500 -o physiboss.out physiboss.err  \$PWD/${p_id}_${cfg_file.baseName}_physiboss_run_${rep}
     """
 
 }                                                                                             
 
+process meta_analysis {
+    input: 
+      path results from physiboss_results.collect()
+      file ko from ko_ch
+    output:
+      path('results')
+    """
+    ids=(\$(ls -1 | grep epithelial_cell_2 | cut -d '_' -f1 | sort | uniq ))
+    for i in "\${ids[@]}"; do
+        mkdir -p \$i/physiboss_results
+        mv \${i}_* \$i/physiboss_results
+        rename \${i}_ "" \$i/physiboss_results/*
+    done
+    meta_analysis_BB -d -i $_DATA_DIR/metadata_small.tsv \$PWD epithelial_cell_2 $ko $repetitions 0 -o \$PWD/results
+    """
+}
