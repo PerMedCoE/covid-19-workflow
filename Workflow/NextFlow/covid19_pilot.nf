@@ -87,21 +87,26 @@ process physiboss_model {
 }                                                                                             
 
 process meta_analysis {
+
+    publishDir "${params.result_dir}" ,mode: 'copy'
+
     input: 
       path physiboss_res  
       file ko 
     output:
-      path('results')
+      path('meta_res')
 
     // Nextflow makes it a bit hard to pass around directory structures
     // So we need to move around some things.
     """
+
     ids=(\$(ls -1 | grep epithelial_cell_2 | cut -d '_' -f1 | sort | uniq ))
     for i in "\${ids[@]}"; do
         mkdir -p \$i/physiboss_results
         mv \${i}_* \$i/physiboss_results
         rename \${i}_ "" \$i/physiboss_results/*
     done
-    meta_analysis_BB -d -i $params.meta_file \$PWD ${params.model_name} $ko $params.repetitions 0 -o \$PWD/results
+
+    meta_analysis_BB -d -i $params.meta_file \$PWD ${params.model_name} $ko $params.repetitions 0 -o \$PWD/meta_res
     """
 }
