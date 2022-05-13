@@ -1,17 +1,21 @@
 
-nextflow.enable.dsl=1
+nextflow.enable.dsl=2
 
 meta_files=Channel.fromPath("${_DATA_DIR}/small/*")
-meta_input=meta_files.map { x -> [x.baseName.split('_')[1],x] }
-repetitions=2
+repetitions=4
 
-ko_ch = Channel.value()
-
+workflow {
+    MaBoSS_analysis()
+    meta_files.map { x -> [x.baseName.split('_')[1],x] } | single_cell_processing
+    personalize_patient(single_cell_processing.out, MaBoSS_analysis.out)
+    physiboss_model(personalize_patient.out.transpose(),Channel.of(1..repetitions))
+    meta_analysis(physiboss_model.out.collect(),MaBoSS_analysis.out)
+}
 
 process MaBoSS_analysis {
 
     output:
-    file "ko_file.txt" into ko_ch
+    file "ko_file.txt" 
 
     """
     MaBoSS_BB -d -i epithelial_cell_2 ${_DATA_DIR} 1 -o ko_file.txt
@@ -20,9 +24,9 @@ process MaBoSS_analysis {
 
 process single_cell_processing {
     input:
-      tuple val(p_id),path(sample_file) from meta_input
+      tuple val(p_id),path(sample_file) 
     output:
-      tuple val("$p_id") , path('result') into single_cell_res
+      tuple val("$p_id") , path('result') 
 
     """
     mkdir result
@@ -32,10 +36,10 @@ process single_cell_processing {
 
 process personalize_patient {
     input: 
-      tuple val(p_id) , path(res_dir) from single_cell_res
-      file ko from ko_ch
+      tuple val(p_id) , path(res_dir) 
+      file ko 
     output:
-      tuple  val("$p_id"),path("model/*.cfg"),path("model/*.bnd") into models
+      tuple  val("$p_id"),path("model/*.cfg"),path("model/*.bnd")
 
     """
     personalize_patient_BB -d -i ${res_dir}/norm_data.tsv ${res_dir}/cells_metadata.tsv ${_DATA_DIR}/epithelial_cell_2 Epithelial_cells $ko -o \$PWD/model personal 
@@ -45,20 +49,20 @@ process personalize_patient {
 process physiboss_model {
     cpus=10
     input:
-      tuple val(p_id) , path(cfg_file) , path(bnd_file) from models.transpose()
-    each rep from 1..repetitions
+      tuple val(p_id) , path(cfg_file) , path(bnd_file)
+      each rep
     output: 
-      path("${p_id}_${cfg_file.baseName}_physiboss_run_${rep}") into physiboss_results 
+      path("${p_id}_${cfg_file.baseName}_physiboss_run_${rep}") 
     """
-    PhysiBoSS_BB -d -i $p_id $rep $cfg_file.baseName $bnd_file $cfg_file ${task.cpus} 500 -o physiboss.out physiboss.err  \$PWD/${p_id}_${cfg_file.baseName}_physiboss_run_${rep}
+    PhysiBoSS_BB -d -i $p_id $rep $cfg_file.baseName $bnd_file $cfg_file ${task.cpus} 8000 -o physiboss.out physiboss.err  \$PWD/${p_id}_${cfg_file.baseName}_physiboss_run_${rep}
     """
 
 }                                                                                             
 
 process meta_analysis {
     input: 
-      path results from physiboss_results.collect()
-      file ko from ko_ch
+      path physiboss_res  
+      file ko 
     output:
       path('results')
     """
