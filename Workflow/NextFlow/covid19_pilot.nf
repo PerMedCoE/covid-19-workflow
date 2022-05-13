@@ -1,25 +1,20 @@
 #!/usr/bin/env nextflow
 nextflow.enable.dsl=2
 
-params.repetitions=2
-params.data_dir="${_DATA_DIR}"
-params.max_time=100
 params.physiboss_cpus=1
 params.single_cell_cpus=1
 params.maboss_cpus=1
-params.model_prefix="epithelial_cell_2"
-params.cell_type="Epithelial_cells"
-params.meta_file="${params.data_dir}/metadata_small.tsv"
+
 
 meta_input=Channel.fromPath("${params.meta_file}")
 
 
 workflow {
-
+    scRNA_counts=tsv_to_csv(meta_input).splitCsv(header: true).map { row -> ["${row.id}","${row.group}", "${row.file}".replaceAll(/.*data/,"${params.data_dir}")  ] }
     MaBoSS_analysis()
 
     // 
-    tsv_to_csv(meta_input).splitCsv(header: true).map { row -> ["${row.id}","${row.group}", "${row.file}".replaceAll(/.*data/,"${params.data_dir}")  ] } | single_cell_processing
+    scRNA_counts | single_cell_processing
 
     personalize_patient(single_cell_processing.out, MaBoSS_analysis.out)
 
@@ -74,7 +69,7 @@ process personalize_patient {
       tuple  val("$p_id"),path("model/*.cfg"),path("model/*.bnd")
 
     """
-    personalize_patient_BB -d -i ${res_dir}/norm_data.tsv ${res_dir}/cells_metadata.tsv ${params.data_dir}/${params.model_prefix} ${params.cell_type} $ko -o \$PWD/model personal 
+    personalize_patient_BB -d -i ${res_dir}/norm_data.tsv ${res_dir}/cells_metadata.tsv ${params.model_prefix} ${params.cell_type} $ko -o \$PWD/model personal 
     """
 } 
 
@@ -107,6 +102,6 @@ process meta_analysis {
         mv \${i}_* \$i/physiboss_results
         rename \${i}_ "" \$i/physiboss_results/*
     done
-    meta_analysis_BB -d -i $params.meta_file \$PWD ${params.model_prefix} $ko $params.repetitions 0 -o \$PWD/results
+    meta_analysis_BB -d -i $params.meta_file \$PWD ${params.model_name} $ko $params.repetitions 0 -o \$PWD/results
     """
 }
