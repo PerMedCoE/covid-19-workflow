@@ -15,3 +15,13 @@ runcompss --log_level=debug --graph --python_interpreter=python3 $(pwd)/src_spli
     ${dataset}/epithelial_cell_2 \
     2 \
     100
+
+
+######################################################
+# APPLICATION EXECUTION EXAMPLE
+# Call:
+#       ./b_2_run.sh
+#
+# Example:
+#       ./b_2_run.sh
+######################################################

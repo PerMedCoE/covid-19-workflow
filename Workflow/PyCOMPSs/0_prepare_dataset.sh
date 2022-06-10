@@ -7,3 +7,12 @@ tar xvf GSE145926_RAW.tar --directory GSE145926_covid19
 rm GSE145926_covid19/*.csv.gz
 
 mv GSE145926_covid19 ../../Resources/data
+
+######################################################
+# APPLICATION EXECUTION EXAMPLE
+# Call:
+#       ./0_prepare_dataset.sh
+#
+# Example:
+#       ./0_prepare_dataset.sh
+######################################################

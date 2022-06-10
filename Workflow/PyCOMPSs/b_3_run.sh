@@ -13,3 +13,12 @@ runcompss --log_level=debug --graph --python_interpreter=python3 $(pwd)/src_spli
     epithelial_cell_2 \
     $(pwd)/ko_file.txt \
     2
+
+######################################################
+# APPLICATION EXECUTION EXAMPLE
+# Call:
+#       ./b_3_run.sh
+#
+# Example:
+#       ./b_3_run.sh
+######################################################

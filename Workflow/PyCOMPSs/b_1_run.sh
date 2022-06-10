@@ -13,3 +13,13 @@ runcompss --log_level=debug --graph --python_interpreter=python3 $(pwd)/src_spli
     ${dataset} \
     ${dataset}/metadata_small.tsv \
     $(pwd)/results/
+
+
+######################################################
+# APPLICATION EXECUTION EXAMPLE
+# Call:
+#       ./b_1_run.sh
+#
+# Example:
+#       ./b_1_run.sh
+######################################################

@@ -34,8 +34,8 @@ enqueue_compss \
 ######################################################
 # APPLICATION EXECUTION EXAMPLE
 # Call:
-#       ./launch.sh
+#       ./a_launch.sh
 #
 # Example:
-#       ./launch.sh
+#       ./a_launch.sh
 ######################################################
