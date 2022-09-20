@@ -12,8 +12,12 @@ source ${SCRIPT_DIR}/aux.sh
 disable_pycompss
 
 MaBoSS_BB -d \
-    -i epithelial_cell_2 $(pwd)/../Resources/data ${COMPUTING_UNITS} \
-    -o $(pwd)/ko_file.txt \
-    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets
+    --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets \
+    default \
+    --model epithelial_cell_2 \
+    --data_folder $(pwd)/../Resources/data \
+    --parallel ${COMPUTING_UNITS} \
+    --ko_file $(pwd)/ko_file.txt
+
 
 enable_pycompss
