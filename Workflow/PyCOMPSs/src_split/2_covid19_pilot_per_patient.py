@@ -27,7 +27,7 @@ def main():
     print("-------------------------------")
 
     # GET INPUT PARAMETERS
-    args = parse_input_parameters(phase=2)
+    args = parse_input_parameters(phase=22)
 
     # GENE CANDIDATES
     genes = [""]  # first empty since it is the original without gene ko

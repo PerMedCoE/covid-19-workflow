@@ -23,7 +23,22 @@ def create_parser(phase):
                             help="Input metadata (.tsv)")
         parser.add_argument("outdir", type=str,
                             help="Output directory")
-    elif phase == 2:
+    elif phase == 21:
+        parser.add_argument("ko_file", type=str,
+                            help="KO file (txt)")
+        parser.add_argument("model", type=str,
+                            help="Model")
+        parser.add_argument("metadata", type=str,
+                            help="Input metadata (.tsv)")
+        parser.add_argument("outdir", type=str,
+                            help="Output directory")
+        parser.add_argument("model_prefix", type=str,
+                            help="Model prefix")
+        parser.add_argument("reps", type=int,
+                            help="Number of repetitions")
+        parser.add_argument("max_time", type=int,
+                            help="Maximum simulation time")
+    elif phase == 22:
         parser.add_argument("ko_file", type=str,
                             help="KO file (txt)")
         parser.add_argument("model", type=str,
@@ -50,7 +65,7 @@ def create_parser(phase):
         parser.add_argument("reps", type=int,
                             help="Number of repetitions")
     else:
-        raise Exception(f"Unsupported phase: {phase}. Must be 1, 2 or 3.")
+        raise Exception(f"Unsupported phase: {phase}. Must be 1, 21, 22 or 3.")
     return parser
 
 
@@ -77,7 +92,15 @@ def parse_input_parameters(phase, show=True):
             print("\t- data folder: %s" % args.data_folder)
             print("\t- metadata file: %s" % args.metadata)
             print("\t- output folder: %s" % args.outdir)
-        elif phase == 2:
+        elif phase == 21:
+            print("\t- ko file: %s" % args.ko_file)
+            print("\t- model: %s" % args.model)
+            print("\t- metadata file: %s" % args.metadata)
+            print("\t- output folder: %s" % args.outdir)
+            print("\t- model prefix: %s" % args.model_prefix)
+            print("\t- replicates: %s" % str(args.reps))
+            print("\t- max time: %d" % args.max_time)
+        elif phase == 22:
             print("\t- ko file: %s" % args.ko_file)
             print("\t- model: %s" % args.model)
             print("\t- patient id: %s" % args.patient_id)
@@ -92,6 +115,6 @@ def parse_input_parameters(phase, show=True):
             print("\t- ko file: %s" % args.ko_file)
             print("\t- replicates: %s" % str(args.reps))
         else:
-            raise Exception(f"Unsupported phase: {phase}. Must be 1, 2 or 3.")
+            raise Exception(f"Unsupported phase: {phase}. Must be 1, 21, 22 or 3.")
         print("\n")
     return args
