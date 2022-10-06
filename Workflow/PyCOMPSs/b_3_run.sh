@@ -11,6 +11,9 @@ fi
 
 dataset=$(pwd)/../../Resources/data
 
+# Set the container engine (SINGULARITY or UDOCKER)
+export CONTAINER_ENGINE=UDOCKER
+
 # Set the tool internal parallelism and constraint
 export COMPUTING_UNITS=1
 
