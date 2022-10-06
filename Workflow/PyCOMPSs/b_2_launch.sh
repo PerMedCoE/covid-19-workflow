@@ -24,7 +24,7 @@ enqueue_compss \
     $(pwd)/src_split/2_covid19_pilot.py \
         $(pwd)/ko_file.txt \
         epithelial_cell_2 \
-        ${dataset}/metadata_small.tsv \
+        ${dataset}/metadata_clean.tsv \
         $(pwd)/results/ \
         ${dataset}/epithelial_cell_2 \
         2 \

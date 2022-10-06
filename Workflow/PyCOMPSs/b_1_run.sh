@@ -11,7 +11,7 @@ runcompss --log_level=debug --graph --python_interpreter=python3 $(pwd)/src_spli
     $(pwd)/ko_file.txt \
     epithelial_cell_2 \
     ${dataset} \
-    ${dataset}/metadata_small.tsv \
+    ${dataset}/metadata_clean.tsv \
     $(pwd)/results/
 
 

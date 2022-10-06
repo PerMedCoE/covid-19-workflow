@@ -25,7 +25,7 @@ enqueue_compss \
         $(pwd)/ko_file.txt \
         epithelial_cell_2 \
         ${dataset} \
-        ${dataset}/metadata_small.tsv \
+        ${dataset}/metadata_clean.tsv \
         $(pwd)/results/
 
 ######################################################
