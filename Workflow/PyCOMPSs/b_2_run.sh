@@ -10,7 +10,7 @@ export COMPUTING_UNITS=1
 runcompss --log_level=debug --graph --python_interpreter=python3 $(pwd)/src_split/2_covid19_pilot.py \
     $(pwd)/ko_file.txt \
     epithelial_cell_2 \
-    ${dataset}/metadata_clean.tsv \
+    ${dataset}/metadata_small_local.tsv \
     $(pwd)/results/ \
     ${dataset}/epithelial_cell_2 \
     2 \

@@ -16,25 +16,29 @@ disable_pycompss
 mkdir -p $(pwd)/result/C141/personalize_patient/models/
 
 personalize_patient_BB -d \
-    -i $(pwd)/result/C141/single_cell_processing/results/norm_data.tsv \
-       $(pwd)/result/C141/single_cell_processing/results/cells_metadata.tsv \
-       $(pwd)/../Resources/data/epithelial_cell_2 Epithelial_cells \
-       $(pwd)/ko_file.txt \
-    -o $(pwd)/result/C141/personalize_patient/models \
-       $(pwd)/result/C141/personalize_patient/personalized_by_cell_type.tsv \
-    --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/,$(pwd)/../Resources/data/:$(pwd)/../Resources/data/
+    --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/,$(pwd)/../Resources/data/:$(pwd)/../Resources/data/ \
+    default \
+    --norm_data $(pwd)/result/C141/single_cell_processing/results/norm_data.tsv \
+    --cells $(pwd)/result/C141/single_cell_processing/results/cells_metadata.tsv \
+    --model_prefix $(pwd)/../Resources/data/epithelial_cell_2 \
+    --t Epithelial_cells \
+    --ko $(pwd)/ko_file.txt \
+    --model_output_dir $(pwd)/result/C141/personalize_patient/models \
+    --personalized_result $(pwd)/result/C141/personalize_patient/personalized_by_cell_type.tsv
 
 # 2nd patient
 
 mkdir -p $(pwd)/result/C142/personalize_patient/models/
 
 personalize_patient_BB -d \
-    -i $(pwd)/result/C142/single_cell_processing/results/norm_data.tsv \
-       $(pwd)/result/C142/single_cell_processing/results/cells_metadata.tsv \
-       $(pwd)/../Resources/data/epithelial_cell_2 Epithelial_cells \
-       $(pwd)/ko_file.txt \
-    -o $(pwd)/result/C142/personalize_patient/models \
-       $(pwd)/result/C142/personalize_patient/personalized_by_cell_type.tsv \
-    --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/,$(pwd)/../Resources/data/:$(pwd)/../Resources/data/
+    --mount_points ${PERSONALIZE_PATIENT_ASSETS}/assets/:${PERSONALIZE_PATIENT_ASSETS}/assets/,$(pwd)/../Resources/data/:$(pwd)/../Resources/data/ \
+    default \
+    --norm_data $(pwd)/result/C142/single_cell_processing/results/norm_data.tsv \
+    --cells $(pwd)/result/C142/single_cell_processing/results/cells_metadata.tsv \
+    --model_prefix $(pwd)/../Resources/data/epithelial_cell_2 \
+    --t Epithelial_cells \
+    --ko $(pwd)/ko_file.txt \
+    --model_output_dir $(pwd)/result/C142/personalize_patient/models \
+    --personalized_result $(pwd)/result/C142/personalize_patient/personalized_by_cell_type.tsv
 
 enable_pycompss

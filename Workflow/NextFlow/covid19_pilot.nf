@@ -44,7 +44,7 @@ process MaBoSS_analysis {
     file "ko_file.txt" 
 
     """
-    MaBoSS_BB -d -i epithelial_cell_2 ${params.data_dir} ${task.cpus} -o ko_file.txt
+    MaBoSS_BB -d --model epithelial_cell_2 --data_folder ${params.data_dir} --parallel ${task.cpus} --ko_file ko_file.txt
     """
 }
 
@@ -57,7 +57,7 @@ process single_cell_processing {
 
     """
     mkdir result
-    single_cell_processing_BB -d -i ${p_id}  ${group} ${sample_file} ${task.cpus} -o result/norm_data.tsv result/raw_data.tsv result/scaled_data.tsv result/cells_metadata.tsv images
+    single_cell_processing_BB -d --p_id ${p_id} --p_group ${group} --p_file ${sample_file} --parallelize ${task.cpus} --norm_data result/norm_data.tsv --raw_data result/raw_data.tsv --scaled_data result/scaled_data.tsv --cells_metadata result/cells_metadata.tsv --outdir images
     """
 }
 
@@ -69,7 +69,7 @@ process personalize_patient {
       tuple  val("$p_id"),path("model/*.cfg"),path("model/*.bnd")
 
     """
-    personalize_patient_BB -d -i ${res_dir}/norm_data.tsv ${res_dir}/cells_metadata.tsv ${params.model_prefix} ${params.cell_type} $ko -o \$PWD/model personal 
+    personalize_patient_BB -d --norm_data ${res_dir}/norm_data.tsv --cells ${res_dir}/cells_metadata.tsv --model_prefix ${params.model_prefix} --t ${params.cell_type} --ko $ko --model_output_dir \$PWD/model --personalized_result personal 
     """
 } 
 
@@ -81,7 +81,7 @@ process physiboss_model {
     output: 
       path("${p_id}_${cfg_file.baseName}_physiboss_run_${rep}") 
     """
-    PhysiBoSS_BB -d -i $p_id $rep $cfg_file.baseName $bnd_file $cfg_file ${task.cpus} ${params.max_time} -o physiboss.out physiboss.err  \$PWD/${p_id}_${cfg_file.baseName}_physiboss_run_${rep}
+    PhysiBoSS_BB -d --sample $p_id --repetition $rep --prefix $cfg_file.baseName --bnd_file $bnd_file --cfg_file $cfg_file --parallel ${task.cpus} --max_time ${params.max_time} --out_file physiboss.out --err_file physiboss.err --results_dir \$PWD/${p_id}_${cfg_file.baseName}_physiboss_run_${rep}
     """
 
 }                                                                                             
@@ -107,6 +107,6 @@ process meta_analysis {
         rename \${i}_ "" \$i/physiboss_results/*
     done
 
-    meta_analysis_BB -d -i $params.meta_file \$PWD ${params.model_name} $ko $params.repetitions 0 -o \$PWD/meta_res
+    meta_analysis_BB -d --meta_file $params.meta_file --out_dir \$PWD --model_prefix ${params.model_name} --ko_file $ko --reps $params.repetitions --verbose 0 --results \$PWD/meta_res
     """
 }

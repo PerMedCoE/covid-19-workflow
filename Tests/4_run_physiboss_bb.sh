@@ -16,64 +16,82 @@ disable_pycompss
 mkdir $(pwd)/result/C141/physiboss_results
 
 PhysiBoSS_BB -d \
-    -i C141 1 epithelial_cell_2_personalized \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized.bnd \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_1.out \
-       $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_1.err \
-       $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized_physiboss_run_1 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C141 \
+    --repetition 1 \
+    --prefix epithelial_cell_2_personalized \
+    --bnd_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized.bnd \
+    --cfg_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_1.out \
+    --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_1.err \
+    --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized_physiboss_run_1
 
 PhysiBoSS_BB -d \
-    -i C141 1 epithelial_cell_2_personalized__M \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__M_ko.bnd \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__M_ko.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_1.out \
-       $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_1.err \
-       $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_1 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C141 \
+    --repetition 1 \
+    --prefix epithelial_cell_2_personalized__M \
+    --bnd_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__M_ko.bnd \
+    --cfg_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__M_ko.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_1.out \
+    --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_1.err \
+    --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_1
 
 PhysiBoSS_BB -d \
-    -i C141 1 epithelial_cell_2_personalized__FADD \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.bnd \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_1.out \
-       $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_1.err \
-       $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_1 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C141 \
+    --repetition 1 \
+    --prefix epithelial_cell_2_personalized__FADD \
+    --bnd_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.bnd \
+    --cfg_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_1.out \
+    --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_1.err \
+    --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_1
 
 PhysiBoSS_BB -d \
-    -i C141 2 epithelial_cell_2_personalized \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized.bnd \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_2.out \
-       $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_2.err \
-       $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized_physiboss_run_2 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C141 \
+    --repetition 2 \
+    --prefix epithelial_cell_2_personalized \
+    --bnd_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized.bnd \
+    --cfg_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_2.out \
+    --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_2.err \
+    --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized_physiboss_run_2
 
 PhysiBoSS_BB -d \
-    -i C141 2 epithelial_cell_2_personalized__M \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__M_ko.bnd \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__M_ko.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_2.out \
-       $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_2.err \
-       $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_2 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C141 \
+    --repetition 2 \
+    --prefix epithelial_cell_2_personalized__M \
+    --bnd_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__M_ko.bnd \
+    --cfg_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__M_ko.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_2.out \
+    --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_2.err \
+    --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_2
 
 PhysiBoSS_BB -d \
-    -i C141 2 epithelial_cell_2_personalized__FADD \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.bnd \
-       $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_2.out \
-       $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_2.err \
-       $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_2 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C141 \
+    --repetition 2 \
+    --prefix epithelial_cell_2_personalized__FADD \
+    --bnd_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.bnd \
+    --cfg_file $(pwd)/result/C141/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_2.out \
+    --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_2.err \
+    --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_2
 
 
 # 2nd patient
@@ -81,63 +99,81 @@ PhysiBoSS_BB -d \
 mkdir $(pwd)/result/C142/physiboss_results
 
 PhysiBoSS_BB -d \
-    -i C142 1 epithelial_cell_2_personalized \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized.bnd \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_1.out \
-       $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_1.err \
-       $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized_physiboss_run_1 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C142 \
+    --repetition 1 \
+    --prefix epithelial_cell_2_personalized \
+    --bnd_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized.bnd \
+    --cfg_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_1.out \
+    --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_1.err \
+    --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized_physiboss_run_1
 
 PhysiBoSS_BB -d \
-    -i C142 1 epithelial_cell_2_personalized__M \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__M_ko.bnd \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__M_ko.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_1.out \
-       $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_1.err \
-       $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_1 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C142 \
+    --repetition 1 \
+    --prefix epithelial_cell_2_personalized__M \
+    --bnd_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__M_ko.bnd \
+    --cfg_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__M_ko.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_1.out \
+    --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_1.err \
+    --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_1
 
 PhysiBoSS_BB -d \
-    -i C142 1 epithelial_cell_2_personalized__FADD \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.bnd \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_1.out \
-       $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_1.err \
-       $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_1 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C142 \
+    --repetition 1 \
+    --prefix epithelial_cell_2_personalized__FADD \
+    --bnd_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.bnd \
+    --cfg_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_1.out \
+    --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_1.err \
+    --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_1
 
 PhysiBoSS_BB -d \
-    -i C142 2 epithelial_cell_2_personalized \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized.bnd \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_2.out \
-       $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_2.err \
-       $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized_physiboss_run_2 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C142 \
+    --repetition 2 \
+    --prefix epithelial_cell_2_personalized \
+    --bnd_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized.bnd \
+    --cfg_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_2.out \
+    --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_2.err \
+    --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized_physiboss_run_2
 
 PhysiBoSS_BB -d \
-    -i C142 2 epithelial_cell_2_personalized__M \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__M_ko.bnd \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__M_ko.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_2.out \
-       $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_2.err \
-       $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_2 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C142 \
+    --repetition 2 \
+    --prefix epithelial_cell_2_personalized__M \
+    --bnd_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__M_ko.bnd \
+    --cfg_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__M_ko.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_2.out \
+    --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_2.err \
+    --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_2
 
 PhysiBoSS_BB -d \
-    -i C142 2 epithelial_cell_2_personalized__FADD \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.bnd \
-       $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.cfg \
-       ${COMPUTING_UNITS} 100 \
-    -o $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_2.out \
-       $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_2.err \
-       $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_2 \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --sample C142 \
+    --repetition 2 \
+    --prefix epithelial_cell_2_personalized__FADD \
+    --bnd_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.bnd \
+    --cfg_file $(pwd)/result/C142/personalize_patient/models/epithelial_cell_2_personalized__FADD_ko.cfg \
+    --parallel ${COMPUTING_UNITS} \
+    --max_time 100 \
+    --out_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_2.out \
+    --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_2.err \
+    --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_2
 
 enable_pycompss
