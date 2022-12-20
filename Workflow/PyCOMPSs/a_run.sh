@@ -16,3 +16,13 @@ runcompss --log_level=debug --graph --python_interpreter=python3 $(pwd)/src/covi
     epithelial_cell_2 \
     ${dataset} \
     100
+
+
+######################################################
+# APPLICATION EXECUTION EXAMPLE
+# Call:
+#       ./a_run.sh
+#
+# Example:
+#       ./a_run.sh
+######################################################

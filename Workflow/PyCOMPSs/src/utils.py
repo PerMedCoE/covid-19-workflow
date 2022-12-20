@@ -22,7 +22,6 @@ def create_parser():
                         help="Number of repetitions")
     parser.add_argument("model", type=str,
                         help="Model")
-    # New
     parser.add_argument("data_folder", type=str,
                         help="Data folder")
     parser.add_argument("max_time", type=int,
