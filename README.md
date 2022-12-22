@@ -19,7 +19,7 @@
       - [Usage steps in MN4](#usage-steps-in-mn4)
     - [Mahti or Puhti](#mahti-or-puhti)
       - [Requirements](#requirements)
-      - [Steps](#steps) 
+      - [Steps](#steps)
   - [License](#license)
   - [Contact](#contact)
 
@@ -140,7 +140,7 @@ The execution is prepared to use the singularity images that **MUST** be placed 
 the images and assets folders accordingly.
 
 
-> **TIP**: If you want to run the workflow with a different dataset, please update the `run.sh` script setting the `dataset` variable to the new dataset folder and their file names. 
+> **TIP**: If you want to run the workflow with a different dataset, please update the `run.sh` script setting the `dataset` variable to the new dataset folder and their file names.
 
 ### MareNostrum 4
 
@@ -158,7 +158,7 @@ All Building Blocks are already installed in MN4, and the COVID19 Workflow avail
 
    ```bash
    export COMPSS_PYTHON_VERSION=3
-   module load COMPSs/2.10
+   module load COMPSs/3.1
    module load singularity/3.5.2
    module use /apps/modules/modulefiles/tools/COMPSs/libraries
    module load permedcoe
@@ -197,7 +197,7 @@ This section explains how to run the COVID19 workflow on CSC supercomputers usin
 #### Requirements
 
 - Install snakemake (or check if there is a version installed using `module spider snakemake`)
-- Install workflow, using the same steps as for the local machine. With the exception that containers have to be built elsewhere. 
+- Install workflow, using the same steps as for the local machine. With the exception that containers have to be built elsewhere.
 
 #### Steps
 
@@ -207,7 +207,7 @@ This section explains how to run the COVID19 workflow on CSC supercomputers usin
    ```bash
    cd Workflow/SnakeMake
    ```
-   
+
 2. Edit `launch.sh` with the correct partition, account, and resource specifications.  
 
 3. Execute `./launch.sh`
