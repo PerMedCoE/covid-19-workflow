@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
-export PERMEDCOE_IMAGES=$(pwd)/../../../BuildingBlocks/Resources/images/
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+if [[ -z "${PERMEDCOE_IMAGES}" ]]; then
+  default_images=$(realpath ${SCRIPT_DIR}/../../../BuildingBlocks/Resources/images/)/
+  export PERMEDCOE_IMAGES=${default_images}
+  echo "WARNING: PERMEDCOE_IMAGES environment variable not set. Using default: ${default_images}"
+else
+  echo "INFO: Using PERMEDCOE_IMAGES from: ${PERMEDCOE_IMAGES}"
+fi
 
 dataset=$(pwd)/../../Resources/data
 

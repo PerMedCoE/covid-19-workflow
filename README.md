@@ -83,64 +83,64 @@ This section explains the requirements and usage for the COVID19 Workflow in a l
 
 #### Usage steps
 
-1. Clone the `BuildingBlocks` repository
+1. Clone this repository:
 
-   ```bash
-   git clone https://github.com/PerMedCoE/BuildingBlocks.git
-   ```
+  ```bash
+  git clone https://github.com/PerMedCoE/covid-19-workflow.git
+  ```
 
-2. Build the required Building Block images
+2. Install the Building Blocks required for the COVID19 Workflow:
 
-   ```bash
-   cd BuildingBlocks/Resources/images
-   sudo singularity build MaBoSS.sif MaBoSS.singularity
-   sudo singularity build meta_analysis.sif meta_analysis.singularity
-   sudo singularity build PhysiCell-COVID19.sif PhysiCell-COVID19.singularity
-   sudo singularity build single_cell.sif single_cell.singularity
-   cd ../../..
-   ```
+  ```bash
+  covid-19-workflow/BuildingBlocks/./install_BBs.sh
+  ```
 
-   > :warning: **TIP**: The singularity containers **can to be downloaded** from the project [B2DROP](https://b2drop.bsc.es/index.php/f/444350).
+3. Get the required Building Block images from the project [B2DROP](https://b2drop.bsc.es/index.php/f/444350):
 
+  - Required images:
+      - MaBoSS.singularity
+      - meta_analysis.singularity
+      - PhysiCell-COVID19.singularity
+      - single_cell.singularity
 
-3. Clone this repository
+  The path where these files are stored **MUST be exported in the `PERMEDCOE_IMAGES`** environment variable.
 
-   ```bash
-   git clone https://github.com/PerMedCoE/covid-19-workflow.git
-   ```
+  > :warning: **TIP**: These containers can be built manually as follows (be patient since some of them may take some time):
+  1. Clone the `BuildingBlocks` repository
+     ```bash
+     git clone https://github.com/PerMedCoE/BuildingBlocks.git
+     ```
+  2. Build the required Building Block images
+     ```bash
+     cd BuildingBlocks/Resources/images
+     sudo singularity build MaBoSS.sif MaBoSS.singularity
+     sudo singularity build meta_analysis.sif meta_analysis.singularity
+     sudo singularity build PhysiCell-COVID19.sif PhysiCell-COVID19.singularity
+     sudo singularity build single_cell.sif single_cell.singularity
+     cd ../../..
+     ```
 
-4. Install the `BuildingBlocks` package
+**If using PyCOMPSs in local PC** (make sure that PyCOMPSs in installed):
 
-   ```bash
-   cd covid-19-workflow
-   cd BuildingBlocks && ./install_BBs.sh && cd ..
-   ```
-
-**If using PyCOMPSs**
-
-5. Go to `Workflow/PyCOMPSs` folder
+4. Go to `Workflow/PyCOMPSs` folder
 
    ```bash
    cd Workflows/PyCOMPSs
    ```
 
-6. Execute `./run.sh`
+5. Execute `./run.sh`
 
-**If using Snakemake**
+**If using Snakemake in local PC** (make sure that SnakeMake is installed):
 
-5. Go to `Workflow/SnakeMake` folder
+4. Go to `Workflow/SnakeMake` folder
 
    ```bash
    cd Workflows/SnakeMake
    ```
 
-6. Execute `./run.sh`
+5. Execute `./run.sh`
+  > **TIP**: If you want to run the workflow with a different dataset, please update the `run.sh` script setting the `dataset` variable to the new dataset folder and their file names.
 
-The execution is prepared to use the singularity images that **MUST** be placed into `BuildingBlocks/Resources/images` folder, and the assets **MUST** be located into `BuildingBlocks/Resources/assets`. If they are located in any other folder, please update the `run.sh` script setting the `PERMEDCOE_IMAGES` and `PERMEDCOE_ASSETS` to
-the images and assets folders accordingly.
-
-
-> **TIP**: If you want to run the workflow with a different dataset, please update the `run.sh` script setting the `dataset` variable to the new dataset folder and their file names.
 
 ### MareNostrum 4
 
@@ -184,11 +184,11 @@ All Building Blocks are already installed in MN4, and the COVID19 Workflow avail
 
 4. Execute `./launch.sh`
 
-This command will launch a job into the job queuing system (SLURM) requesting 2 nodes (one node acting half master and half worker, and other full worker node) for 20 minutes, and is prepared to use the singularity images that are already deployed in MN4 (located into the `PERMEDCOE_IMAGES` environment variable). It uses the dataset located into `../../Resources/data` folder.
+  This command will launch a job into the job queuing system (SLURM) requesting 2 nodes (one node acting half master and half worker, and other full worker node) for 20 minutes, and is prepared to use the singularity images that are already deployed in MN4 (located into the `PERMEDCOE_IMAGES` environment variable). It uses the dataset located into `../../Resources/data` folder.
 
-> :warning: **TIP**: If you want to run the workflow with a different dataset, please edit the `launch.sh` script and define the appropriate dataset path.
+  > :warning: **TIP**: If you want to run the workflow with a different dataset, please edit the `launch.sh` script and define the appropriate dataset path.
 
-After the execution, a `results` folder will be available with with COVID19 Workflow results.
+  After the execution, a `results` folder will be available with with COVID19 Workflow results.
 
 ### Mahti or Puhti
 
@@ -212,7 +212,7 @@ This section explains how to run the COVID19 workflow on CSC supercomputers usin
 
 3. Execute `./launch.sh`
 
-> :warning: Snakemake provides a `--cluster` flag, but this functionality should be avoided as it's really not suited for HPC systems.
+  > :warning: Snakemake provides a `--cluster` flag, but this functionality should be avoided as it's really not suited for HPC systems.
 
 ## License
 
