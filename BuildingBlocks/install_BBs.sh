@@ -2,29 +2,10 @@
 
 echo "Installing covid-19-workflow required Building Blocks... Please wait..."
 
-CURRENT_DIR=$(pwd)
-# SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+python3 -m pip install 'git+https://github.com/PerMedCoE/BuildingBlocks.git@main#subdirectory=MaBoSS'
+python3 -m pip install 'git+https://github.com/PerMedCoE/BuildingBlocks.git@main#subdirectory=meta_analysis'
+python3 -m pip install 'git+https://github.com/PerMedCoE/BuildingBlocks.git@main#subdirectory=personalize_patient'
+python3 -m pip install 'git+https://github.com/PerMedCoE/BuildingBlocks.git@main#subdirectory=PhysiBoSS'
+python3 -m pip install 'git+https://github.com/PerMedCoE/BuildingBlocks.git@main#subdirectory=single_cell_processing'
 
-cd ../../BuildingBlocks
-
-cd MaBoSS
-./install.sh
-cd ..
-
-cd meta_analysis
-./install.sh
-cd ..
-
-cd personalize_patient
-./install.sh
-cd ..
-
-cd PhysiBoSS
-./install.sh
-cd ..
-
-cd single_cell_processing
-./install.sh
-cd ..
-
-cd ${CURRENT_DIR}
+echo "covid-19-workflow required Building Blocks installed"
