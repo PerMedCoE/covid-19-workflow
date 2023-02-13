@@ -16,8 +16,12 @@ disable_pycompss
 mkdir -p $(pwd)/result/C141/single_cell_processing/results/
 mkdir -p $(pwd)/result/C141/single_cell_processing/images/
 
+WORKING_DIRECTORY=$(pwd)/single_cell_C141_wd
+mkdir -p ${WORKING_DIRECTORY}
+
 single_cell_processing_BB -d \
-    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/ \
+    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
+    --working_directory ${WORKING_DIRECTORY} \
     --p_id C141 \
     --p_group C \
     --p_file $(pwd)/../Resources/data/small/GSM4339769_C141_filtered_feature_bc_matrix.h5 \
@@ -33,8 +37,12 @@ single_cell_processing_BB -d \
 mkdir -p $(pwd)/result/C142/single_cell_processing/results/
 mkdir -p $(pwd)/result/C142/single_cell_processing/images/
 
+WORKING_DIRECTORY=$(pwd)/single_cell_C142_wd
+mkdir -p ${WORKING_DIRECTORY}
+
 single_cell_processing_BB -d \
-    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/ \
+    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
+    --working_directory ${WORKING_DIRECTORY} \
     --p_id C142 \
     --p_group C \
     --p_file $(pwd)/../Resources/data/small/GSM4339770_C142_filtered_feature_bc_matrix.h5 \

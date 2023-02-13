@@ -10,6 +10,8 @@ from meta_analysis_BB import meta_analysis
 # Import utils
 from utils import parse_input_parameters
 
+SANDBOX = "pycompss_sandbox"
+
 
 def main():
     """
@@ -28,7 +30,8 @@ def main():
     final_result_dir = os.path.join(args.outdir, "meta_analysis")
     os.makedirs(final_result_dir)
     # META-ANALYSIS
-    meta_analysis(meta_file=args.metadata,
+    meta_analysis(working_directory=SANDBOX,
+                  meta_file=args.metadata,
                   out_dir=args.outdir,
                   model_prefix=args.model,
                   ko_file=args.ko_file,

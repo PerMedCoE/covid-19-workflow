@@ -20,6 +20,8 @@ from pycompss.api.api import compss_wait_on_directory
 from pycompss.api.api import compss_wait_on_file
 from pycompss.api.api import compss_wait_on
 
+SANDBOX = "pycompss_sandbox"
+
 
 def main():
     """
@@ -41,7 +43,11 @@ def main():
         print("KO file not detected, running MABOSS")
         ## MABOSS
         # This step produces the ko_file.txt, containing the set of selected gene candidates
-        MaBoSS_analysis(args.model, args.data_folder, args.ko_file)
+        MaBoSS_analysis(model=args.model,
+                        data_folder=args.data_folder,
+                        ko_file=args.ko_file,
+                        parallel="1",
+                        working_directory=SANDBOX)
         compss_wait_on_file(args.ko_file)
     # Discover gene candidates
     genes = [""]  # first empty since it is the original without gene ko
@@ -75,7 +81,8 @@ def main():
             else:
                 # Absolute path - Supercomputer
                 p_file = line["file"]
-            single_cell_processing(p_id=sample,
+            single_cell_processing(working_directory=SANDBOX,
+                                   p_id=sample,
                                    p_group=line["group"],
                                    p_file=p_file,
                                    norm_data=norm_data,
@@ -90,7 +97,8 @@ def main():
             os.makedirs(pp_dir)
             model_output_dir = os.path.join(pp_dir, "models")
             personalized_result = os.path.join(pp_dir, "personalized_by_cell_type.tsv")
-            personalize_patient(norm_data=norm_data,
+            personalize_patient(working_directory=SANDBOX,
+                                norm_data=norm_data,
                                 cells=cells_metadata,
                                 model_prefix=args.model_prefix,
                                 t="Epithelial_cells",
@@ -118,7 +126,8 @@ def main():
                                     out_file=out_file,
                                     err_file=err_file,
                                     results_dir=results_dir,
-                                    max_time=args.max_time)
+                                    max_time=args.max_time,
+                                    working_directory=SANDBOX)
 
     # VERSION 1: PROCESS ALL WITHIN THE SAME TASK
 
@@ -133,7 +142,8 @@ def main():
     final_result_dir = os.path.join(args.outdir, "meta_analysis")
     os.makedirs(final_result_dir)
     # META-ANALYSIS
-    meta_analysis(meta_file=args.metadata,
+    meta_analysis(working_directory=SANDBOX,
+                  meta_file=args.metadata,
                   out_dir=args.outdir,
                   model_prefix=args.model,
                   ko_file=args.ko_file,
