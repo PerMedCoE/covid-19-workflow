@@ -13,12 +13,13 @@ disable_pycompss
 
 mkdir $(pwd)/result/meta_analysis/
 
-WORKING_DIRECTORY=$(pwd)/meta_analysis_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/meta_analysis_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-meta_analysis_BB -d \
-    --mount_points ${META_ANALISIS_ASSETS}/assets/:${META_ANALISIS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+meta_analysis_BB \
+    --debug \
+    --mount_points ${META_ANALISIS_ASSETS}/assets/:${META_ANALISIS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --meta_file $(pwd)/../Resources/data/metadata_small.tsv \
     --out_dir $(pwd)/result/ \
     --model_prefix epithelial_cell_2 \

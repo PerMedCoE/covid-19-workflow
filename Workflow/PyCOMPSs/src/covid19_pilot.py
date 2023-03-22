@@ -5,6 +5,8 @@ import csv
 
 # To set building block debug mode
 from permedcoe import set_debug
+# To set the default PyCOMPSs TMPDIR
+from permedcoe import TMPDIR
 # Import building block tasks
 from MaBoSS_BB import MaBoSS_analysis
 from single_cell_processing_BB import single_cell_processing
@@ -19,8 +21,6 @@ from helpers import get_genefiles
 from pycompss.api.api import compss_wait_on_directory
 from pycompss.api.api import compss_wait_on_file
 from pycompss.api.api import compss_wait_on
-
-SANDBOX = "pycompss_sandbox"
 
 
 def main():
@@ -47,7 +47,7 @@ def main():
                         data_folder=args.data_folder,
                         ko_file=args.ko_file,
                         parallel="1",
-                        working_directory=SANDBOX)
+                        tmpdir=TMPDIR)
         compss_wait_on_file(args.ko_file)
     # Discover gene candidates
     genes = [""]  # first empty since it is the original without gene ko
@@ -81,7 +81,7 @@ def main():
             else:
                 # Absolute path - Supercomputer
                 p_file = line["file"]
-            single_cell_processing(working_directory=SANDBOX,
+            single_cell_processing(tmpdir=TMPDIR,
                                    p_id=sample,
                                    p_group=line["group"],
                                    p_file=p_file,
@@ -97,7 +97,7 @@ def main():
             os.makedirs(pp_dir)
             model_output_dir = os.path.join(pp_dir, "models")
             personalized_result = os.path.join(pp_dir, "personalized_by_cell_type.tsv")
-            personalize_patient(working_directory=SANDBOX,
+            personalize_patient(tmpdir=TMPDIR,
                                 norm_data=norm_data,
                                 cells=cells_metadata,
                                 model_prefix=args.model_prefix,
@@ -127,7 +127,7 @@ def main():
                                     err_file=err_file,
                                     results_dir=results_dir,
                                     max_time=args.max_time,
-                                    working_directory=SANDBOX)
+                                    tmpdir=TMPDIR)
 
     # VERSION 1: PROCESS ALL WITHIN THE SAME TASK
 
@@ -142,7 +142,7 @@ def main():
     final_result_dir = os.path.join(args.outdir, "meta_analysis")
     os.makedirs(final_result_dir)
     # META-ANALYSIS
-    meta_analysis(working_directory=SANDBOX,
+    meta_analysis(tmpdir=TMPDIR,
                   meta_file=args.metadata,
                   out_dir=args.outdir,
                   model_prefix=args.model,

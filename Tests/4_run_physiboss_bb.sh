@@ -15,12 +15,13 @@ disable_pycompss
 
 mkdir $(pwd)/result/C141/physiboss_results
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C141_1_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C141_1_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized \
@@ -32,12 +33,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_1.err \
     --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized_physiboss_run_1
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C141_1_M_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C141_1_M_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized__M \
@@ -49,12 +51,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_1.err \
     --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_1
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C141_1_FADD_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C141_1_FADD_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized__FADD \
@@ -66,12 +69,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__FADD_ko_1.err \
     --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_1
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C141_2_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C141_2_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized \
@@ -83,12 +87,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized_2.err \
     --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized_physiboss_run_2
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C141_2_M_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C141_2_M_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized__M \
@@ -100,12 +105,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C141/physiboss_results/output_C141_epithelial_cell_2_personalized__M_ko_2.err \
     --results_dir $(pwd)/result/C141/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_2
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C141_2_FADD_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C141_2_FADD_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized__FADD \
@@ -122,12 +128,13 @@ PhysiBoSS_BB -d \
 
 mkdir $(pwd)/result/C142/physiboss_results
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C142_1_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C142_1_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized \
@@ -139,12 +146,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_1.err \
     --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized_physiboss_run_1
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C142_1_M_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C142_1_M_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized__M \
@@ -156,12 +164,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_1.err \
     --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_1
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C142_1_FADD_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C142_1_FADD_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized__FADD \
@@ -173,12 +182,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__FADD_ko_1.err \
     --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__FADD_ko_physiboss_run_1
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C142_2_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C142_2_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized \
@@ -190,12 +200,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized_2.err \
     --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized_physiboss_run_2
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C142_2_M_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C142_2_M_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized__M \
@@ -207,12 +218,13 @@ PhysiBoSS_BB -d \
     --err_file $(pwd)/result/C142/physiboss_results/output_C142_epithelial_cell_2_personalized__M_ko_2.err \
     --results_dir $(pwd)/result/C142/physiboss_results/epithelial_cell_2_personalized__M_ko_physiboss_run_2
 
-WORKING_DIRECTORY=$(pwd)/physiboss_C142_2_FADD_wd
-mkdir -p ${WORKING_DIRECTORY}
+TEMP_DIRECTORY=$(pwd)/physiboss_C142_2_FADD_wd
+mkdir -p ${TEMP_DIRECTORY}
 
-PhysiBoSS_BB -d \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/,${WORKING_DIRECTORY}:${WORKING_DIRECTORY} \
-    --working_directory ${WORKING_DIRECTORY} \
+PhysiBoSS_BB \
+    --debug \
+    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
+    --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized__FADD \

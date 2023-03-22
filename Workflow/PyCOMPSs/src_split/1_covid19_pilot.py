@@ -5,6 +5,8 @@ import csv
 
 # To set building block debug mode
 from permedcoe import set_debug
+# To set the default PyCOMPSs TMPDIR
+from permedcoe import TMPDIR
 # Import building block tasks
 from MaBoSS_BB import MaBoSS_analysis
 from single_cell_processing_BB import single_cell_processing
@@ -14,8 +16,6 @@ from helpers import get_genefiles
 
 # PyCOMPSs imports
 from pycompss.api.api import compss_wait_on_file
-
-SANDBOX = "pycompss_sandbox"
 
 
 def main():
@@ -41,7 +41,7 @@ def main():
         MaBoSS_analysis(args.model,
                         args.data_folder,
                         args.ko_file,
-                        working_directory=SANDBOX)
+                        tmpdir=TMPDIR)
         compss_wait_on_file(args.ko_file)
     # Discover gene candidates
     genes = [""]  # first empty since it is the original without gene ko
@@ -73,7 +73,7 @@ def main():
             else:
                 # Absolute path - Supercomputer
                 p_file = line["file"]
-            single_cell_processing(working_directory=SANDBOX,
+            single_cell_processing(tmpdir=TMPDIR,
                                    p_id=sample,
                                    p_group=line["group"],
                                    p_file=p_file,
