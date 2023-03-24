@@ -11,13 +11,17 @@ MABOSS_ASSETS=$(python3 -c "import MaBoSS_BB; import os; print(os.path.dirname(M
 source ${SCRIPT_DIR}/aux.sh
 disable_pycompss
 
-MaBoSS_BB -d \
+TEMP_DIRECTORY=$(pwd)/MaBoSS_wd
+mkdir -p ${TEMP_DIRECTORY}
+
+MaBoSS_BB \
+    --debug \
     --mount_point ${MABOSS_ASSETS}/assets:${MABOSS_ASSETS}/assets \
+    --tmpdir ${TEMP_DIRECTORY} \
     default \
     --model epithelial_cell_2 \
     --data_folder $(pwd)/../Resources/data \
     --parallel ${COMPUTING_UNITS} \
     --ko_file $(pwd)/ko_file.txt
-
 
 enable_pycompss

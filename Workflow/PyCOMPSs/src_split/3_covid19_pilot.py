@@ -5,6 +5,8 @@ import csv
 
 # To set building block debug mode
 from permedcoe import set_debug
+# To set the default PyCOMPSs TMPDIR
+from permedcoe import TMPDIR
 # Import building block tasks
 from meta_analysis_BB import meta_analysis
 # Import utils
@@ -28,7 +30,8 @@ def main():
     final_result_dir = os.path.join(args.outdir, "meta_analysis")
     os.makedirs(final_result_dir)
     # META-ANALYSIS
-    meta_analysis(meta_file=args.metadata,
+    meta_analysis(tmpdir=TMPDIR,
+                  meta_file=args.metadata,
                   out_dir=args.outdir,
                   model_prefix=args.model,
                   ko_file=args.ko_file,

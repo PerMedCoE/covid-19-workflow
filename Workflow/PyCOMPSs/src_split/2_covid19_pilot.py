@@ -5,6 +5,8 @@ import csv
 
 # To set building block debug mode
 from permedcoe import set_debug
+# To set the default PyCOMPSs TMPDIR
+from permedcoe import TMPDIR
 # Import building block tasks
 from personalize_patient_BB import personalize_patient
 from PhysiBoSS_BB import physiboss_model
@@ -57,7 +59,8 @@ def main():
             os.makedirs(pp_dir)
             model_output_dir = os.path.join(pp_dir, "models")
             personalized_result = os.path.join(pp_dir, "personalized_by_cell_type.tsv")
-            personalize_patient(norm_data=norm_data,
+            personalize_patient(tmpdir=TMPDIR,
+                                norm_data=norm_data,
                                 cells=cells_metadata,
                                 model_prefix=args.model_prefix,
                                 t="Epithelial_cells",
@@ -85,7 +88,8 @@ def main():
                                     out_file=out_file,
                                     err_file=err_file,
                                     results_dir=results_dir,
-                                    max_time=args.max_time)
+                                    max_time=args.max_time,
+                                    tmpdir=TMPDIR)
 
     # Wait for all physiboss
     # Currently needed because the meta analysis requires all of them

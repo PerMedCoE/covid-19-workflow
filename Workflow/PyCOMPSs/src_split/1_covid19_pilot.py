@@ -5,6 +5,8 @@ import csv
 
 # To set building block debug mode
 from permedcoe import set_debug
+# To set the default PyCOMPSs TMPDIR
+from permedcoe import TMPDIR
 # Import building block tasks
 from MaBoSS_BB import MaBoSS_analysis
 from single_cell_processing_BB import single_cell_processing
@@ -36,7 +38,10 @@ def main():
         print("KO file not detected, running MABOSS")
         ## MABOSS
         # This step produces the ko_file.txt, containing the set of selected gene candidates
-        MaBoSS_analysis(args.model, args.data_folder, args.ko_file)
+        MaBoSS_analysis(args.model,
+                        args.data_folder,
+                        args.ko_file,
+                        tmpdir=TMPDIR)
         compss_wait_on_file(args.ko_file)
     # Discover gene candidates
     genes = [""]  # first empty since it is the original without gene ko
@@ -68,7 +73,8 @@ def main():
             else:
                 # Absolute path - Supercomputer
                 p_file = line["file"]
-            single_cell_processing(p_id=sample,
+            single_cell_processing(tmpdir=TMPDIR,
+                                   p_id=sample,
                                    p_group=line["group"],
                                    p_file=p_file,
                                    norm_data=norm_data,

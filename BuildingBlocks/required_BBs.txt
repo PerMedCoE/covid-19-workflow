@@ -1,0 +1,7 @@
+# This file defines the required building blocks for this workflow
+#  - Lines that start with # will be ignored
+MaBoSS
+meta_analysis
+personalize_patient
+PhysiBoSS
+single_cell_processing
