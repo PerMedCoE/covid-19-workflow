@@ -5,9 +5,6 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 export PERMEDCOE_IMAGES=${SCRIPT_DIR}/../../BuildingBlocks/Resources/images/
 export COMPUTING_UNITS=1
 
-# Self contained assets in package
-SINGLE_CELL_ASSETS=$(python3 -c "import single_cell_processing_BB; import os; print(os.path.dirname(single_cell_processing_BB.__file__))")
-
 source ${SCRIPT_DIR}/aux.sh
 disable_pycompss
 
@@ -21,7 +18,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 single_cell_processing_BB \
     --debug \
-    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --p_id C141 \
     --p_group C \
@@ -43,7 +39,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 single_cell_processing_BB \
     --debug \
-    --mount_points ${SINGLE_CELL_ASSETS}/assets/:${SINGLE_CELL_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --p_id C142 \
     --p_group C \
