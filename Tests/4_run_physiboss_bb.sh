@@ -5,9 +5,6 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 export PERMEDCOE_IMAGES=${SCRIPT_DIR}/../../BuildingBlocks/Resources/images/
 export COMPUTING_UNITS=1
 
-# Self contained assets in package
-PHYSIBOSS_ASSETS=$(python3 -c "import PhysiBoSS_BB; import os; print(os.path.dirname(PhysiBoSS_BB.__file__))")
-
 source ${SCRIPT_DIR}/aux.sh
 disable_pycompss
 
@@ -20,7 +17,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 1 \
@@ -38,7 +34,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 1 \
@@ -56,7 +51,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 1 \
@@ -74,7 +68,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 2 \
@@ -92,7 +85,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 2 \
@@ -110,7 +102,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C141 \
     --repetition 2 \
@@ -133,7 +124,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 1 \
@@ -151,7 +141,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 1 \
@@ -169,7 +158,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 1 \
@@ -187,7 +175,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 2 \
@@ -205,7 +192,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 2 \
@@ -223,7 +209,6 @@ mkdir -p ${TEMP_DIRECTORY}
 
 PhysiBoSS_BB \
     --debug \
-    --mount_points ${PHYSIBOSS_ASSETS}/assets/:${PHYSIBOSS_ASSETS}/assets/ \
     --tmpdir ${TEMP_DIRECTORY} \
     --sample C142 \
     --repetition 2 \
