@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
-export PERMEDCOE_IMAGES=${SCRIPT_DIR}/../../BuildingBlocks/Resources/images/
+if [[ -z "${PERMEDCOE_IMAGES}" ]]; then
+  default_images=$(realpath ${SCRIPT_DIR}/../../BuildingBlocks/Resources/images/)/
+  export PERMEDCOE_IMAGES=${default_images}
+  echo "WARNING: PERMEDCOE_IMAGES environment variable not set. Using default: ${default_images}"
+else
+  echo "INFO: Using PERMEDCOE_IMAGES from: ${PERMEDCOE_IMAGES}"
+fi
 export COMPUTING_UNITS=1
-
-source ${SCRIPT_DIR}/aux.sh
-disable_pycompss
 
 mkdir $(pwd)/result/meta_analysis/
 
@@ -23,5 +25,3 @@ meta_analysis_BB \
     --reps 2 \
     --verbose T \
     --results $(pwd)/result/meta_analysis/
-
-enable_pycompss
