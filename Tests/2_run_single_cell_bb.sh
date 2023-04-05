@@ -1,12 +1,14 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-
-export PERMEDCOE_IMAGES=${SCRIPT_DIR}/../../BuildingBlocks/Resources/images/
+if [[ -z "${PERMEDCOE_IMAGES}" ]]; then
+  default_images=$(realpath ${SCRIPT_DIR}/../../BuildingBlocks/Resources/images/)/
+  export PERMEDCOE_IMAGES=${default_images}
+  echo "WARNING: PERMEDCOE_IMAGES environment variable not set. Using default: ${default_images}"
+else
+  echo "INFO: Using PERMEDCOE_IMAGES from: ${PERMEDCOE_IMAGES}"
+fi
 export COMPUTING_UNITS=1
-
-source ${SCRIPT_DIR}/aux.sh
-disable_pycompss
 
 # 1st patient
 
@@ -49,5 +51,3 @@ single_cell_processing_BB \
     --scaled_data $(pwd)/result/C142/single_cell_processing/results/scaled_data.tsv \
     --cells_metadata $(pwd)/result/C142/single_cell_processing/results/cells_metadata.tsv \
     --outdir $(pwd)/result/C142/single_cell_processing/images/
-
-enable_pycompss
