@@ -7,15 +7,19 @@ Node Virus_replication {
 }
 
 Node Chemokin_secretion {
-	logic = Virus_inside;
+	logic = Chemokin_secretion;
 }
 
 Node Virus_expression {
-	logic = Virus_inside;
+	logic = Virus_expression;
 }
 
 Node TCell_attached {
 	logic = TCell_attached;
+}
+
+Node Cell_Pyroptosis {
+	logic = Cell_Pyroptosis;
 }
 
 Node FASLG {
