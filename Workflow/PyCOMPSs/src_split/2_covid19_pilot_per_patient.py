@@ -9,7 +9,7 @@ from permedcoe import set_debug
 from permedcoe import TMPDIR
 # Import building block tasks
 from personalize_patient_BB import personalize_patient
-from PhysiBoSS_BB import physiboss_model
+from PhysiBoSS_BB import physiboss_model, physiboss_analyse_replicates
 # Import utils
 from utils import parse_input_parameters
 from helpers import get_genefiles
@@ -38,7 +38,10 @@ def main():
     genefiles = get_genefiles(args.model, genes)
 
     physiboss_result = None
+    physiboss_results = []
+    physiboss_replicates_result = None
     physiboss_subfolder = "physiboss_results"  # do not modify (hardcoded in meta-analysis)
+    physiboss_replicates_analysis_subfolder = "physiboss_replicates_analysis"  # do not modify (hardcoded in meta-analysis)
 
     sample = args.patient_id
     sample_out_dir = os.path.join(args.outdir, sample)
@@ -75,7 +78,8 @@ def main():
             print("\t- " + err_file)
             results_dir = os.path.join(args.outdir, sample, physiboss_subfolder, gene_prefix + "_physiboss_run_" + str(r))
             os.makedirs(results_dir)
-            physiboss_result = results_dir
+            # physiboss_result = results_dir
+            physiboss_results.append(results_dir)
             # PHYSIBOSS
             physiboss_model(sample=sample,
                             repetition=r,
@@ -86,9 +90,52 @@ def main():
                             results_dir=results_dir,
                             max_time=args.max_time,
                             tmpdir=TMPDIR)
+            
+        # # Wait for physiboss replicates of that particular genes
+        # compss_wait_on_directory(physiboss_subresult)
+
+        # physiboss_replicates_result = os.path.join(args.outdir, sample, gene_prefix + "_results")
+        # replicates_folder = os.path.join(args.outdir, sample, physiboss_subfolder)
+        # prefix = gene_prefix + "_physiboss_run_"
+        
+        # physiboss_analyse_replicates(replicates=args.reps,
+        #                              replicates_folder=replicates_folder,
+        #                              prefix=prefix, 
+        #                              out_file=out_file,
+        #                              err_file=err_file,
+        #                              results_dir=physiboss_replicates_result,
+        #                              parallel=1,
+        #                              tmpdir=TMPDIR
+        # )
 
     # Wait for physiboss
-    compss_wait_on_directory(physiboss_result)
+    for physiboss_result in physiboss_results:
+        compss_wait_on_directory(physiboss_result)
+
+    for gene_prefix in genefiles:
+        print(">> prefix: " + str(gene_prefix))
+        out_file = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + ".out")
+        err_file = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + ".err")
+        print("\t- " + out_file)
+        print("\t- " + err_file)
+        
+        physiboss_replicates_result = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + "_results")
+        replicates_folder = os.path.join(args.outdir, sample, physiboss_subfolder)
+        prefix = gene_prefix + "_physiboss_run_"
+        
+        physiboss_analyse_replicates(replicates=args.reps,
+                                     replicates_folder=replicates_folder,
+                                     prefix=prefix, 
+                                     out_file=out_file,
+                                     err_file=err_file,
+                                     results_dir=physiboss_replicates_result,
+                                     parallel=1,
+                                     tmpdir=TMPDIR
+        )
+
+    # Wait for physiboss
+    compss_wait_on_directory(physiboss_replicates_result)
+
 
 
 if __name__ == "__main__":
