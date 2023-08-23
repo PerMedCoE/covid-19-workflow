@@ -11,7 +11,7 @@ from permedcoe import TMPDIR
 from MaBoSS_BB import MaBoSS_analysis
 from single_cell_processing_BB import single_cell_processing
 from personalize_patient_BB import personalize_patient
-from PhysiBoSS_BB import physiboss_model
+from PhysiBoSS_BB import physiboss_model, physiboss_analyse_replicates
 from meta_analysis_BB import meta_analysis
 # Import utils
 from utils import parse_input_parameters
@@ -137,6 +137,42 @@ def main():
     # structure
     for physiboss_result in physiboss_results:
         compss_wait_on_directory(physiboss_result)
+
+    physiboss_replicates_results = []
+    physiboss_replicates_analysis_subfolder = "physiboss_replicates_analysis"  # do not modify (hardcoded in meta-analysis)
+
+    with open(args.metadata, "r") as metadata_fd:
+        reader = csv.DictReader(metadata_fd, delimiter="\t")
+        for line in reader:
+            # ONE LINE PER PATIENT
+            sample = line["id"]
+    
+            for gene_prefix in genefiles:
+                print(">> prefix: " + str(gene_prefix))
+                out_file = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + ".out")
+                err_file = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + ".err")
+                print("\t- " + out_file)
+                print("\t- " + err_file)
+                  
+                physiboss_replicates_result = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + "_results")
+                replicates_folder = os.path.join(args.outdir, sample, physiboss_subfolder)
+                prefix = gene_prefix + "_physiboss_run_"
+                
+                physiboss_replicates_results.append(physiboss_replicates_result)
+                
+                physiboss_analyse_replicates(replicates=args.reps,
+                                            replicates_folder=replicates_folder,
+                                            prefix=prefix, 
+                                            out_file=out_file,
+                                            err_file=err_file,
+                                            results_dir=physiboss_replicates_result,
+                                            parallel=1,
+                                            tmpdir=TMPDIR
+                )
+
+    # Wait for physiboss
+    for physiboss_replicates_result in physiboss_replicates_results:
+        compss_wait_on_directory(physiboss_replicates_result)
 
     # Perform last step: meta analysis
     final_result_dir = os.path.join(args.outdir, "meta_analysis")
