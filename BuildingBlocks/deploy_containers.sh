@@ -7,10 +7,10 @@ CONTAINER_FOLDER=$(pwd)/covid-19-workflow-containers
 mkdir -p ${CONTAINER_FOLDER}
 cd ${CONTAINER_FOLDER}
 
-apptainer pull maboss.sif docker://ghcr.io/jaantollander/maboss:latest
-apptainer pull meta_analysis.sif docker://ghcr.io/jaantollander/meta_analysis:latest
-apptainer pull PhysiCell-COVID19.sif docker://ghcr.io/jaantollander/PhysiCell-COVID19:latest
-apptainer pull single_cell.sif docker://ghcr.io/jaantollander/single_cell:latest
+apptainer pull maboss.sif docker://ghcr.io/permedcoe/maboss:latest
+apptainer pull meta_analysis.sif docker://ghcr.io/permedcoe/meta_analysis:latest
+apptainer pull physicell_covid19.sif docker://ghcr.io/permedcoe/physicell_covid19:latest
+apptainer pull single_cell.sif docker://ghcr.io/permedcoe/single_cell:latest
 
 cd ${CURRENT_DIR}
 
