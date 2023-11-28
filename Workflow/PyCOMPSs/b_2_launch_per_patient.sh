@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 export COMPSS_PYTHON_VERSION=3
-module load COMPSs/3.1
-module load singularity/3.5.2
+module load COMPSs/3.3
+module load singularity/3.7.3
 module use /apps/modules/modulefiles/tools/COMPSs/libraries
 module load permedcoe  # generic permedcoe package
 
@@ -14,6 +14,7 @@ dataset=$(pwd)/../../Resources/data/
 export COMPUTING_UNITS=1
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -31,6 +32,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -48,6 +50,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -65,6 +68,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -82,6 +86,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -99,6 +104,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -116,6 +122,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -133,6 +140,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -150,6 +158,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
@@ -167,6 +176,7 @@ enqueue_compss \
         100
 
 enqueue_compss \
+    --qos=debug \
     --num_nodes=2 \
     --exec_time=15 \
     --worker_working_dir=$(pwd) \
