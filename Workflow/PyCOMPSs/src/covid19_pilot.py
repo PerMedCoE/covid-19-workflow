@@ -146,20 +146,20 @@ def main():
         for line in reader:
             # ONE LINE PER PATIENT
             sample = line["id"]
-    
+
             for gene_prefix in genefiles:
                 print(">> prefix: " + str(gene_prefix))
                 out_file = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + ".out")
                 err_file = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + ".err")
                 print("\t- " + out_file)
                 print("\t- " + err_file)
-                  
+
                 physiboss_replicates_result = os.path.join(args.outdir, sample, physiboss_replicates_analysis_subfolder, gene_prefix + "_results")
                 replicates_folder = os.path.join(args.outdir, sample, physiboss_subfolder)
                 prefix = gene_prefix + "_physiboss_run_"
-                
+
                 physiboss_replicates_results.append(physiboss_replicates_result)
-                
+
                 physiboss_analyse_replicates(replicates=args.reps,
                                             replicates_folder=replicates_folder,
                                             prefix=prefix, 
