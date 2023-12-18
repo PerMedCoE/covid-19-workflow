@@ -161,13 +161,13 @@ def main():
                 physiboss_replicates_results.append(physiboss_replicates_result)
 
                 physiboss_analyse_replicates(replicates=args.reps,
-                                            replicates_folder=replicates_folder,
-                                            prefix=prefix, 
-                                            out_file=out_file,
-                                            err_file=err_file,
-                                            results_dir=physiboss_replicates_result,
-                                            parallel=1,
-                                            tmpdir=TMPDIR
+                                             replicates_folder=replicates_folder,
+                                             prefix=prefix,
+                                             out_file=out_file,
+                                             err_file=err_file,
+                                             results_dir=physiboss_replicates_result,
+                                             parallel=1,
+                                             tmpdir=TMPDIR
                 )
 
     # Wait for physiboss
