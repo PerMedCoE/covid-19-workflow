@@ -11,7 +11,8 @@ from permedcoe import TMPDIR
 from MaBoSS_BB import MaBoSS_analysis
 from single_cell_processing_BB import single_cell_processing
 from personalize_patient_BB import personalize_patient
-from PhysiBoSS_BB import physiboss_model, physiboss_analyse_replicates
+from PhysiBoSS_BB import physiboss_model
+from PhysiBoSS_BB import physiboss_analyse_replicates
 from meta_analysis_BB import meta_analysis
 # Import utils
 from utils import parse_input_parameters
