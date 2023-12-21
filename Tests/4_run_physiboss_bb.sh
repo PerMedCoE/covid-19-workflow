@@ -20,6 +20,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C141 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized \
@@ -37,6 +38,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C141 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized__M \
@@ -54,6 +56,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C141 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized__FADD \
@@ -71,6 +74,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C141 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized \
@@ -88,6 +92,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C141 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized__M \
@@ -105,6 +110,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C141 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized__FADD \
@@ -127,6 +133,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C142 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized \
@@ -144,6 +151,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C142 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized__M \
@@ -161,6 +169,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C142 \
     --repetition 1 \
     --prefix epithelial_cell_2_personalized__FADD \
@@ -178,6 +187,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C142 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized \
@@ -195,6 +205,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C142 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized__M \
@@ -212,6 +223,7 @@ mkdir -p ${TEMP_DIRECTORY}
 PhysiBoSS_BB \
     --debug \
     --tmpdir ${TEMP_DIRECTORY} \
+    default \
     --sample C142 \
     --repetition 2 \
     --prefix epithelial_cell_2_personalized__FADD \
