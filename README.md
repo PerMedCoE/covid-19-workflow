@@ -18,8 +18,8 @@
       - [Requirements in MN4](#requirements-in-mn4)
       - [Usage steps in MN4](#usage-steps-in-mn4)
     - [Mahti or Puhti](#mahti-or-puhti)
-      - [Requirements](#requirements)
-      - [Steps](#steps)
+      - [Requirements in Mahti or Puhti](#requirements-in-mahti-or-puhti)
+      - [Usage steps in Mahti or Puhti](#usage-steps-in-mahti-or-puhti)
   - [License](#license)
   - [Contact](#contact)
 
@@ -57,7 +57,7 @@ Building Blocks used in the COVID-19 Workflow.
 
 The ``Workflow`` folder contains the workflows implementations.
 
-Currently contains the implementation using PyCOMPSs and Snakemake (in progress).
+Currently contains the implementation using PyCOMPSs, NextFlow and Snakemake.
 
 ### Resources
 
@@ -95,7 +95,8 @@ This section explains the requirements and usage for the COVID19 Workflow in a l
   covid-19-workflow/BuildingBlocks/./install_BBs.sh
   ```
 
-3. Get the required Building Block images from the project [B2DROP](https://b2drop.bsc.es/index.php/f/444350):
+3. Get the required Building Block images from the project
+   [B2DROP](https://b2drop.bsc.es/index.php/f/444350) or [GitHub](https://github.com/orgs/PerMedCoE/packages):
 
   - Required images:
       - MaBoSS.singularity
@@ -130,6 +131,17 @@ This section explains the requirements and usage for the COVID19 Workflow in a l
 
 5. Execute `./run.sh`
 
+**If using NextFlow in local PC** (make sure that NextFlow is installed):
+
+4. Go to `Workflow/NextFlow` folder
+
+   ```bash
+   cd Workflows/NextFlow
+   ```
+
+5. Execute `./run.sh`
+  > **TIP**: If you want to run the workflow with a different dataset, please update the `run.sh` script setting the `dataset` variable to the new dataset folder and their file names.
+
 **If using Snakemake in local PC** (make sure that SnakeMake is installed):
 
 4. Go to `Workflow/SnakeMake` folder
@@ -158,8 +170,8 @@ All Building Blocks are already installed in MN4, and the COVID19 Workflow avail
 
    ```bash
    export COMPSS_PYTHON_VERSION=3
-   module load COMPSs/3.1
-   module load singularity/3.5.2
+   module load COMPSs/3.3
+   module load singularity/3.7.3
    module use /apps/modules/modulefiles/tools/COMPSs/libraries
    module load permedcoe
    ```
@@ -194,12 +206,12 @@ All Building Blocks are already installed in MN4, and the COVID19 Workflow avail
 
 This section explains how to run the COVID19 workflow on CSC supercomputers using SnakeMake.
 
-#### Requirements
+#### Requirements in Mahti or Puhti
 
 - Install snakemake (or check if there is a version installed using `module spider snakemake`)
 - Install workflow, using the same steps as for the local machine. With the exception that containers have to be built elsewhere.
 
-#### Steps
+#### Usage steps in Mahti or Puhti
 
 
 1. Go to `Workflow/SnakeMake` folder
@@ -208,7 +220,7 @@ This section explains how to run the COVID19 workflow on CSC supercomputers usin
    cd Workflow/SnakeMake
    ```
 
-2. Edit `launch.sh` with the correct partition, account, and resource specifications.  
+2. Edit `launch.sh` with the correct partition, account, and resource specifications.
 
 3. Execute `./launch.sh`
 
