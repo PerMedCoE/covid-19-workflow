@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 
-# MN4
-module load singularity/3.7.3
-module use /apps/modules/modulefiles/tools/COMPSs/libraries
-module load permedcoe
-module load python/3.10.2
-module load nextflow/21.04.1
-
-export _DATA_DIR=$COVID19WORKFLOW_DATASET
+export PERMEDCOE_IMAGES=$(readlink -f $(pwd)/../../../BuildingBlocks/Resources/images/)/
+export _DATA_DIR=$(readlink -f ../../Resources/data/)
 
 mkdir MaBoSS_wd
 
